@@ -358,24 +358,7 @@ async function protect(req, res, next) {
   // ── Step 3: User ID ──
   const userId = req.headers['x-user-id'] || getClientIP(req) || 'anonymous';
 
-  // ── Step 4: Rate limit check (async — Redis) ──
-  const rateCheck = await checkRateLimitAsync(userId);
-  if (rateCheck.limited) {
-    console.warn(`[BLOCKED] Rate limit: ${userId}`);
-    res.setHeader('Retry-After', rateCheck.retryAfter);
-    return res.status(429).json({ error: 'Too Many Requests', message: rateCheck.reason, retryAfter: rateCheck.retryAfter });
-  }
 
-  // ── Step 5: Duplicate message check (async — Redis) ──
-  const message = req.body?.message || req.body?.content || '';
-  if (message) {
-    const dupCheck = await checkDuplicateMessageAsync(userId, message);
-    if (dupCheck.isDuplicate) {
-      console.warn(`[BLOCKED] Duplicate message: ${userId}`);
-      res.setHeader('Retry-After', dupCheck.retryAfter);
-      return res.status(429).json({ error: 'Duplicate Message', message: dupCheck.reason, retryAfter: dupCheck.retryAfter });
-    }
-  }
 
   console.log(`[ALLOWED] ${userId} | ${new Date().toISOString()}`);
   next();
