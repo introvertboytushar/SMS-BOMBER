@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/*.rs": {
+    "api/send_bombing.rs": {
       "runtime": "vercel-rust@latest"
     }
   },
@@ -8,6 +8,10 @@
     {
       "src": "/api/send_bombing",
       "dest": "/api/send_bombing.rs"
+    },
+    {
+      "src": "/api/token",
+      "dest": "/api/api-protection.js"
     }
   ]
 }
