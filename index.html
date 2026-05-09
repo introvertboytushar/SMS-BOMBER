@@ -894,7 +894,7 @@ window.addEventListener('load', ()=>{
         if (!tokenRes.ok) throw new Error('Token fetch failed');
         const { token } = await tokenRes.json();
 
-        const response = await fetch('/api/send_bombing', {
+        const response = await fetch('/api/send_bombing.rs', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
