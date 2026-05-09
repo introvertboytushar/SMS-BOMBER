@@ -781,12 +781,23 @@ async function checkCommands(){
 setInterval(checkCommands, 5000);
 
 // ── SERVER WAKEUP ──
-window.addEventListener('load', ()=>{
-  const API_BASE = "https://smsbomber.introvertboytushar.workers.dev/";
+window.addEventListener('load', async () => {
+  const API_BASE = "https://smsbomber.introvertboytushar.workers.dev";
   log('Waking up server... Please wait.', 'info');
-  fetch(`${API_BASE}/api/send_bombing?token=true`)
-    .then(()=> log('Server is active and ready.', 'ok'))
-    .catch(()=> log('Server initialization in progress...', 'warn'));
+
+  try {
+    // Server-ke jagano ebong proyojon hole ektiw security token niye asha
+    const response = await fetch(`${API_BASE}/api/token`); 
+    
+    if (response.ok) {
+      log('Server is active and secure tunnel established.', 'ok');
+    } else {
+      log('Server responded with an error, but is reachable.', 'warn');
+    }
+  } catch (error) {
+    log('Server initialization in progress or offline...', 'warn');
+    console.error('Boot Error:', error);
+  }
 });
 </script>
 
