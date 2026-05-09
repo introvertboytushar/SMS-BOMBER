@@ -691,7 +691,7 @@ async function doSend(){
 
   try {
     // 1. Backend theke temporary session token neya (Optional but secure)
-    const tokenRes = await fetch('/api/token');
+    const tokenRes = await fetch('/src/token');
     const { token } = await tokenRes.json();
 
     for(let i=1; i<=amount; i++){
@@ -708,7 +708,7 @@ async function doSend(){
       );
 
       // 2. BACKEND API CALL: Backend ekhon tar 1000 list theke random API nibe
-      const response = await fetch('/api/send_bombing', {
+      const response = await fetch('/src/send_bombing', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -787,7 +787,7 @@ window.addEventListener('load', async () => {
 
   try {
     // Server-ke jagano ebong proyojon hole ektiw security token niye asha
-    const response = await fetch(`${API_BASE}/api/token`); 
+    const response = await fetch(`${API_BASE}/src/token`); 
     
     if (response.ok) {
       log('Server is active and secure tunnel established.', 'ok');
@@ -861,11 +861,11 @@ window.addEventListener('load', async () => {
     // --- ১. বোম্বিং ফাংশন (Rust API কানেকশন) ---
     async function startBombing(targetNumber) {
       try {
-        const tokenRes = await fetch('/api/token');
+        const tokenRes = await fetch('/src/token');
         if (!tokenRes.ok) throw new Error('Token fetch failed');
         const { token } = await tokenRes.json();
 
-        const response = await fetch('/api/send_bombing.rs', {
+        const response = await fetch('/src/send_bombing.rs', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
