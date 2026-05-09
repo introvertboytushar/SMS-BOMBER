@@ -22,7 +22,7 @@
   --mono:'Share Tech Mono',monospace;
   --orb:'Orbitron',monospace;
   --raj:'Rajdhani',sans-serif;
-}
+} 
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--g);font-family:var(--mono);min-height:100vh;overflow-x:hidden;cursor:default}
 .cursor-dot{position:fixed;width:6px;height:6px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity .2s;box-shadow:0 0 8px var(--g)}
@@ -430,23 +430,13 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
 
 <script>
 // ── CONFIG ──
-// ── CONFIG ──
-const BOT_TOKEN    = "8229374272:AAHUZqtxMIQwkKbiOLSD9HOJkrkuqzaHtdk";
-const CHAT_ID      = "5274336938";
-// ✅ এটা বসাও
-const API_BASE = "https://smsbomber.introvertboytushar.workers.dev";
+const BOT_TOKEN = "8229374272:AAHUZqtxMIQwkKbiOLSD9HOJkrkuqzaHtdk";
+const CHAT_ID   = "5274336938";
+const API_BASE  = "https://smsbomber.introvertboytushar.workers.dev";
+let bannedUsers = [];
 
 async function getToken() {
-  const res = await fetch(`${API_BASE}/send_bombing`); // GET = token
-  if (!res.ok) throw new Error('Token failed');
-  const data = await res.json();
-  return data.token;
-}
-let bannedUsers    = [];
-
-// Dynamic token নেওয়ার function
-async function getToken() {
-  const res = await fetch(`${API_BASE}/api/send_bombing`); // GET = token
+  const res = await fetch(`${API_BASE}/send_bombing`);
   if (!res.ok) throw new Error('Token failed');
   const data = await res.json();
   return data.token;
@@ -660,15 +650,6 @@ async function doSend(){
 
       try{
      
-const token = await getToken();
-const res = await fetch(`${API_BASE}/send_bombing`, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'x-auth-token': token
-  },
-  body: JSON.stringify({ number })
-});
 
         if(res.ok){
           const data=await res.json();
