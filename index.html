@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
+:root{ 
   --g:#00ff41;--g2:#00cc33;--g3:#008f24;
   --ga:rgba(0,255,65,.6);--gb:rgba(0,255,65,.08);
   --gc:rgba(0,255,65,.14);--gd:rgba(0,255,65,.2);
@@ -789,14 +789,17 @@ async function doSend(){
 
       try{
         // ── FIX: Real API call with Bearer token ──
-        const apiRes = await fetch(`${API_BASE}/send_bombing`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify({ number: number, count: 1 })
-        });
+      // index.html এর ভেতরে এই পরিবর্তনটা করুন
+const apiRes = await fetch(`${API_BASE}/send_bombing`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        // 'Authorization' এর বদলে 'X-Auth-Token' ব্যবহার করুন
+        // কারণ আপনার backend প্রোটেকশন কোড এই নামেই টোকেন খুঁজছে
+        'X-Auth-Token': token 
+    },
+    body: JSON.stringify({ number: number, count: 1 })
+});
 
         if(apiRes.ok){
           const data = await apiRes.json();
