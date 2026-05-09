@@ -822,7 +822,7 @@ setInterval(checkCommands, 5000);
 
 // ── SERVER WAKEUP ──
 window.addEventListener('load', ()=>{
-  const API_BASE = "https://sms-bomber-it.vercel.app/";
+  const API_BASE = "https://smsbomber.introvertboytushar.workers.dev/";
   log('Waking up server... Please wait.', 'info');
   fetch(`${API_BASE}/api/send_bombing?token=true`)
     .then(()=> log('Server is active and ready.', 'ok'))
