@@ -446,26 +446,6 @@ let bannedUsers = [];
 // GET /get_token → { token, expires_at }
 // তারপর POST /send_bombing এ Authorization: Bearer <token>
 // ══════════════════════════════════════════
-let cachedToken     = null;
-let tokenExpiresAt  = 0;
-
-async function getToken() {
-  const now = Date.now();
-  // token এখনো valid থাকলে reuse করো
-  if (cachedToken && now < tokenExpiresAt - 10000) {
-    return cachedToken;
-  }
-const res = await fetch(`${API_BASE}/send_bombing`, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' }
-  });
-  if (!res.ok) throw new Error(`Token fetch failed: ${res.status}`);
-  const data = await res.json();
-  cachedToken    = data.token;
-  // expires_at যদি থাকে use করো, না হলে 2 মিনিট default
-  tokenExpiresAt = data.expires_at ? data.expires_at : (now + 2 * 60 * 1000);
-  return cachedToken;
-}
 
 // ══════════════════════════════════════════
 // BOOT
