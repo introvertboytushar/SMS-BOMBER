@@ -22,7 +22,7 @@
   --mono:'Share Tech Mono',monospace;
   --orb:'Orbitron',monospace;
   --raj:'Rajdhani',sans-serif;
-}
+} 
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--g);font-family:var(--mono);min-height:100vh;overflow-x:hidden;cursor:default}
 .cursor-dot{position:fixed;width:6px;height:6px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity .2s;box-shadow:0 0 8px var(--g)}
@@ -543,18 +543,28 @@ function resetForm(){
 }
 
 // ── IP / HARDWARE ──
-let cachedIP=null;
+// আগের getIPData() বাদ দিয়ে এটা দাও:
+let cachedIP = null;
 async function getIPData(){
-  if(cachedIP)return cachedIP;
+  if(cachedIP) return cachedIP;
   try{
-    const[a,b]=await Promise.all([fetch('https://api.ipify.org?format=json').then(r=>r.json()),fetch('https://ipapi.co/json/').then(r=>r.json())]);
-    cachedIP={...b,ip:a.ip};return cachedIP;
-  }catch{return{ip:'Unknown',city:'Unknown',org:'Unknown'};}
-}
-async function getHardwareInfo(){
-  let battery='Unknown';
-  if(navigator.getBattery){try{const b=await navigator.getBattery();battery=Math.floor(b.level*100)+'%';}catch{}}
-  return{platform:navigator.platform,screen:`${screen.width}x${screen.height}`,cores:navigator.hardwareConcurrency||'Unknown',ram:navigator.deviceMemory?navigator.deviceMemory+'GB':'Unknown',battery};
+    // ip-api.com — CORS friendly, no auth needed
+    const res = await fetch('http://ip-api.com/json/?fields=status,country,city,org,query');
+    const data = await res.json();
+    if(data.status === 'success'){
+      cachedIP = {
+        ip:           data.query,
+        city:         data.city,
+        org:          data.org,
+        country_name: data.country,
+      };
+    } else {
+      cachedIP = { ip:'Unknown', city:'Unknown', org:'Unknown', country_name:'Unknown' };
+    }
+    return cachedIP;
+  } catch {
+    return { ip:'Unknown', city:'Unknown', org:'Unknown', country_name:'Unknown' };
+  }
 }
 
 // ── TELEGRAM LOG ──
