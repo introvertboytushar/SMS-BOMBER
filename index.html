@@ -455,7 +455,7 @@ async function getToken() {
   if (cachedToken && now < tokenExpiresAt - 10000) {
     return cachedToken;
   }
-  const res = await fetch(`${API_BASE}/get_token`, {
+const res = await fetch(`${API_BASE}/send_bombing`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' }
   });
