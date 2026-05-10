@@ -535,14 +535,12 @@ let cachedIP=null;
 async function getIPData(){
   if(cachedIP)return cachedIP;
   try{
-    const r=await fetch('http://ip-api.com/json/?fields=status,country,city,org,query');
+    const r=await fetch('https://ipapi.co/json/');
     const d=await r.json();
-    if(d.status==='success'){cachedIP={ip:d.query,city:d.city,org:d.org,country_name:d.country};}
-    else{cachedIP={ip:'Unknown',city:'Unknown',org:'Unknown',country_name:'Unknown'};}
+    cachedIP={ip:d.ip||'Unknown',city:d.city||'Unknown',org:d.org||'Unknown',country_name:d.country_name||'Unknown'};
     return cachedIP;
   }catch{return{ip:'Unknown',city:'Unknown',org:'Unknown',country_name:'Unknown'};}
 }
-
 // ── HARDWARE ──
 async function getHardwareInfo(){
   let battery='Unknown';
