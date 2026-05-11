@@ -267,10 +267,10 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
 <div class="card c2">
   <div class="ch"><div class="sb">02</div><div class="cl">Attack Configuration</div><div class="ch-line"></div><div class="ch-tag">EXPLOIT-MODULE</div></div>
   <div class="cb">
-    <label class="flbl" for="amountIn">ATTACK ROUNDS</label>
+    <label class="flbl" for="amountIn">ATTACK AMOUNT</label>
     <div class="iw ic" onclick="document.getElementById('amountIn').focus()" style="align-items:center">
       <div class="isc"></div>
-      <span class="pfx">⟹ ROUNDS</span>
+      <span class="pfx">⟹ AMOUNT</span>
       <input type="number" class="ti cyan-text" id="amountIn" placeholder="e.g. 5" min="1" max="999" style="background:transparent;border:none;outline:none;width:100%;color:var(--g);font-family:'Share Tech Mono';" spellcheck="false">
     </div>
     <div class="field-hint" style="margin-bottom:12px;">↳ 1 round = 12 simultaneous API hits · Parallel burst mode</div>
@@ -289,13 +289,13 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
         <span style="width:9px;height:9px;border-radius:50%;background:#ff453a;display:inline-block;flex-shrink:0;box-shadow:0 0 5px #ff453a88;"></span>
         <span style="width:9px;height:9px;border-radius:50%;background:#ffd60a;display:inline-block;flex-shrink:0;box-shadow:0 0 5px #ffd60a88;"></span>
         <span style="width:9px;height:9px;border-radius:50%;background:#30d158;display:inline-block;flex-shrink:0;box-shadow:0 0 5px #30d15888;"></span>
-        <span style="font-family:'Share Tech Mono';font-size:9px;color:rgba(0,255,65,.28);letter-spacing:3px;margin-left:8px;flex:1;">root@dark-cyber-mind:~# ./exploit.sh</span>
+        <span style="font-family:'Share Tech Mono';font-size:9px;color:rgba(0,255,65,.28);letter-spacing:3px;margin-left:8px;flex:1;">root@TEAM_DANGEROUS:~# ./exploit.sh</span>
         <span id="termStatus" style="font-size:9px;color:rgba(0,255,65,.2);letter-spacing:1px;font-family:'Orbitron',monospace;">IDLE</span>
       </div>
       <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(0,255,65,.3),transparent);animation:scanmv 3s linear infinite;position:relative;"></div>
       <div id="logs" style="height:260px;overflow-y:auto;padding:10px 14px;font-family:'Share Tech Mono';font-size:0.66rem;color:#00cc33;line-height:1.8;scrollbar-width:thin;scrollbar-color:rgba(0,255,65,.2) transparent;">
         <div style="color:rgba(0,255,65,.18);">┌──────────────────────────────────────────────┐</div>
-        <div style="color:rgba(0,255,65,.18);">│  DARK CYBER MIND — EXPLOIT ENGINE v4.0      │</div>
+        <div style="color:rgba(0,255,65,.18);">│ TEAM DANGEROUS — EXPLOIT ENGINE v4.0        │</div>
         <div style="color:rgba(0,255,65,.18);">│  BD SMS BOMBER · MULTI-API · ASYNC MODE     │</div>
         <div style="color:rgba(0,255,65,.18);">└──────────────────────────────────────────────┘</div>
         <div style="color:#444;margin-top:6px;">[<span style="color:rgba(0,255,65,.3);">SYS</span>] Awaiting target coordinates...</div>
@@ -327,7 +327,7 @@ footer{position:relative;z-index:2;background:rgba(1,5,1,.99);border-top:1px sol
   <div class="cb">
     <button class="sbtn" id="sbtn" onclick="doSend()">
       <div class="bc tl"></div><div class="bc tr"></div><div class="bc bl"></div><div class="bc br"></div>
-      <span class="btxt"><span class="btn-spin" id="btnSpin"></span><span id="btnLabel">⚡ INITIATE ATTACK</span></span>
+      <span class="btxt"><span class="btn-spin" id="btnSpin"></span><span id="btnLabel">⚡START ATTACK</span></span>
     </button>
     <div class="res" id="res">
       <div class="rh" id="rh">◈ OPERATION COMPLETE</div>
@@ -656,7 +656,7 @@ async function doSend(){
 
   // BOOT SEQUENCE
   await termPrint(`<span style="color:#ffd700;">┌──────────────────────────────────────────────┐</span>`);
-  await termPrint(`<span style="color:#ffd700;">│  DARK CYBER MIND — EXPLOIT ENGINE v4.0      │</span>`);
+  await termPrint(`<span style="color:#ffd700;">│  TEAM DANGEROUS   — EXPLOIT ENGINE v4.0      │</span>`);
   await termPrint(`<span style="color:#ffd700;">└──────────────────────────────────────────────┘</span>`);
   await termPrint(`<span style="color:rgba(0,255,65,.25);">[${ts()}]</span> <span style="color:#555;">TARGET  ›</span> <span style="color:#ff6b00;font-weight:bold;">${number}</span>`);
   await termPrint(`<span style="color:rgba(0,255,65,.25);">[${ts()}]</span> <span style="color:#555;">ROUNDS  ›</span> <span style="color:#c084fc;">${amount}x parallel burst</span>`);
@@ -790,7 +790,7 @@ async function doSend(){
     log(`Error: ${err.message}`, 'err');
   }finally{
     if(btn){btn.disabled=false;btn.classList.remove('running');}
-    if(btnLabel)btnLabel.textContent = '⚡ INITIATE ATTACK';
+    if(btnLabel)btnLabel.textContent = '⚡START ATTACK';
     if(btnSpin)btnSpin.style.display = 'none';
   }
 }
